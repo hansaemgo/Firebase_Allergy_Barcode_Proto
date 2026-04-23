@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -10,7 +9,6 @@ import { cn } from "@/lib/utils"
 export default function Home() {
   return (
     <div className="max-w-md mx-auto min-h-screen bg-background pb-20">
-      {/* Header - pb-6(24px) -> pb-9(36px) to increase background height by ~12px */}
       <header className="pt-6 px-6 pb-9 bg-primary text-white flex justify-between items-center rounded-b-[2rem] shadow-lg">
         <div>
           <h1 className="text-xl font-bold tracking-tight">SafeBite</h1>
@@ -21,13 +19,10 @@ export default function Home() {
         </div>
       </header>
 
-      {/* Main Card Positioned lower */}
-      <div className="px-6 -mt-3.5">
-        {/* Main CTA */}
+      <div className="px-6 -mt-[19px]">
         <Link href="/scan">
           <Card className="bg-secondary border-none shadow-xl hover:scale-[1.02] transition-transform cursor-pointer overflow-hidden">
             <CardContent className="p-0 flex flex-col items-center">
-              {/* p-8 -> p-6 to prevent text wrapping on small screens */}
               <div className="w-full bg-white/20 p-6 flex flex-col items-center text-primary">
                 <Scan className="h-14 w-14 mb-4" />
                 <h2 className="text-lg font-bold truncate">즉석 안전 스캔</h2>
@@ -40,7 +35,6 @@ export default function Home() {
           </Card>
         </Link>
 
-        {/* Profiles Section */}
         <section className="mt-8">
           <div className="flex justify-between items-center mb-3">
             <h3 className="text-base font-bold flex items-center gap-2">
@@ -56,7 +50,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Safety Alerts */}
         <section className="mt-8">
           <div className="flex justify-between items-center mb-3">
             <h3 className="text-base font-bold flex items-center gap-2">
@@ -77,7 +70,6 @@ export default function Home() {
           </Card>
         </section>
 
-        {/* Recent Scans */}
         <section className="mt-8">
           <h3 className="text-base font-bold mb-3">최근 검증 내역</h3>
           <div className="space-y-2">

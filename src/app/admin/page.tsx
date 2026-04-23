@@ -1,4 +1,3 @@
-
 import { AppNav } from "@/components/app-nav"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -15,6 +14,7 @@ import {
   ExternalLink
 } from "lucide-react"
 import { Input } from "@/components/ui/input"
+import { cn } from "@/lib/utils"
 
 export default function AdminPage() {
   return (
@@ -38,7 +38,6 @@ export default function AdminPage() {
       </header>
 
       <div className="p-6 grid grid-cols-3 gap-3">
-        {/* Stats Section */}
         <Card className="bg-primary text-white border-none shadow-sm">
           <CardContent className="p-4 flex flex-col items-center text-center">
             <Clock className="h-6 w-6 mb-1 opacity-80" />
@@ -61,7 +60,6 @@ export default function AdminPage() {
           </CardContent>
         </Card>
 
-        {/* Verification Queue */}
         <Card className="col-span-3">
           <CardHeader className="p-4 pb-2">
             <div className="flex justify-between items-center">
@@ -87,7 +85,6 @@ export default function AdminPage() {
           </CardContent>
         </Card>
 
-        {/* Master Database Status */}
         <Card className="col-span-3">
           <CardHeader className="p-4 pb-2">
             <CardTitle className="text-base flex items-center gap-2">
@@ -121,7 +118,7 @@ function QueueItem({ product, report, user, time, urgency }: { product: string; 
   }
 
   return (
-    <div className={`flex items-center justify-between p-3 border rounded-xl border-l-4 ${urgencyColors[urgency]}`}>
+    <div className={cn("flex items-center justify-between p-3 border rounded-xl border-l-4", urgencyColors[urgency])}>
       <div className="space-y-0.5 overflow-hidden">
         <div className="flex items-center gap-2">
           <h4 className="font-bold text-xs truncate">{product}</h4>
