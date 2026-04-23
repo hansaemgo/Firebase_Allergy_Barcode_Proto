@@ -65,7 +65,7 @@ export default function AdminPage() {
           <CardHeader className="p-4 pb-2">
             <div className="flex justify-between items-center">
               <CardTitle className="text-base">검증 대기열</CardTitle>
-              <Badge variant="outline" className="text-[10px] h-5">Action Required</Badge>
+              <Badge variant="outline" className="text-[10px] h-5">조치 필요</Badge>
             </div>
           </CardHeader>
           <CardContent className="p-4 pt-0 space-y-3">
@@ -90,7 +90,7 @@ export default function AdminPage() {
         <Card className="col-span-3">
           <CardHeader className="p-4 pb-2">
             <CardTitle className="text-base flex items-center gap-2">
-              <Database className="h-4 w-4 text-primary" /> Master DB Status
+              <Database className="h-4 w-4 text-primary" /> 마스터 DB 상태
             </CardTitle>
           </CardHeader>
           <CardContent className="p-4 pt-0 space-y-2">
@@ -127,7 +127,7 @@ function QueueItem({ product, report, user, time, urgency }: { product: string; 
           <span className="text-[9px] text-muted-foreground shrink-0">{time}</span>
         </div>
         <p className="text-[10px] text-muted-foreground truncate">{report}</p>
-        <p className="text-[9px] font-medium uppercase text-primary">By: {user}</p>
+        <p className="text-[9px] font-medium uppercase text-primary">보고자: {user}</p>
       </div>
       <div className="flex gap-1 shrink-0 ml-2">
         <Button size="icon" variant="ghost" className="h-7 w-7 rounded-full text-success">

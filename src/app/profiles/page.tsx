@@ -22,8 +22,8 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 
 export default function ProfilesPage() {
   const [profiles, setProfiles] = useState([
-    { id: 1, name: "준 (아들)", allergens: ["땅콩", "우유"], severity: "심각", color: "bg-blue-500" },
-    { id: 2, name: "사라", allergens: ["글루텐", "대두", "갑각류"], severity: "중간", color: "bg-pink-500" },
+    { id: 1, name: "준 (아들)", allergens: ["땅콩", "우유"], severity: "심각", color: "bg-primary" },
+    { id: 2, name: "사라", allergens: ["글루텐", "대두", "갑각류"], severity: "중간", color: "bg-secondary" },
   ])
 
   return (
