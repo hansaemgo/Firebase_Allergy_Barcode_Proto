@@ -21,9 +21,9 @@ export default function AdminPage() {
       <header className="p-8 pb-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h1 className="text-3xl font-bold flex items-center gap-3">
-            <ShieldAlert className="h-8 w-8 text-primary" /> 관리자 커맨드 센터
+            <ShieldAlert className="h-8 w-8 text-primary" /> Admin Command Center
           </h1>
-          <p className="text-muted-foreground">데이터 무결성 및 안전 보고서 관리.</p>
+          <p className="text-muted-foreground">Manage data integrity and safety reports.</p>
         </div>
         <div className="flex items-center gap-2">
            <div className="relative">
