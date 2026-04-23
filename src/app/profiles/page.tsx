@@ -22,15 +22,15 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 
 export default function ProfilesPage() {
   const [profiles, setProfiles] = useState([
-    { id: 1, name: "Jun (Son)", allergens: ["Peanuts", "Milk"], severity: "Severe", color: "bg-blue-500" },
-    { id: 2, name: "Sarah", allergens: ["Gluten", "Soy", "Shellfish"], severity: "Moderate", color: "bg-pink-500" },
+    { id: 1, name: "준 (아들)", allergens: ["땅콩", "우유"], severity: "심각", color: "bg-blue-500" },
+    { id: 2, name: "사라", allergens: ["글루텐", "대두", "갑각류"], severity: "중간", color: "bg-pink-500" },
   ])
 
   return (
     <div className="max-w-md mx-auto min-h-screen bg-background pb-20">
       <header className="p-6 pb-2">
-        <h1 className="text-3xl font-bold tracking-tight">Profiles</h1>
-        <p className="text-muted-foreground font-medium">Manage safety profiles for your family.</p>
+        <h1 className="text-3xl font-bold tracking-tight">프로필</h1>
+        <p className="text-muted-foreground font-medium">가족을 위한 안전 프로필을 관리하세요.</p>
       </header>
 
       <div className="p-6 space-y-6">
@@ -52,7 +52,7 @@ export default function ProfilesPage() {
                         </div>
                         <div>
                           <h3 className="font-bold text-lg">{profile.name}</h3>
-                          <Badge variant={profile.severity === "Severe" ? "destructive" : "outline"} className="text-[10px] px-1.5 py-0 mt-1">
+                          <Badge variant={profile.severity === "심각" ? "destructive" : "outline"} className="text-[10px] px-1.5 py-0 mt-1">
                             {profile.severity}
                           </Badge>
                         </div>
@@ -82,8 +82,8 @@ export default function ProfilesPage() {
         <Card className="bg-primary text-white border-none shadow-lg">
           <CardContent className="p-6 flex items-center justify-between">
             <div className="space-y-1">
-              <h3 className="font-bold text-lg">Group Scanning</h3>
-              <p className="text-xs opacity-80">Verify safety against all profiles at once.</p>
+              <h3 className="font-bold text-lg">그룹 스캔</h3>
+              <p className="text-xs opacity-80">모든 프로필을 동시에 검증합니다.</p>
             </div>
             <div className="h-12 w-12 bg-white/20 rounded-full flex items-center justify-center">
               <ShieldCheck className="h-6 w-6" />
@@ -101,49 +101,49 @@ function ProfileWizard({ onAdd }: { onAdd: (profile: any) => void }) {
   const [step, setStep] = useState(1)
   const [formData, setFormData] = useState({
     name: "",
-    severity: "Moderate",
+    severity: "중간",
     allergens: [] as string[]
   })
   const [open, setOpen] = useState(false)
 
-  const commonAllergens = ["Peanuts", "Tree Nuts", "Milk", "Gluten", "Egg", "Soy", "Fish", "Shellfish"]
+  const commonAllergens = ["땅콩", "견과류", "우유", "글루텐", "계란", "대두", "생선", "갑각류"]
 
   const handleSubmit = () => {
     onAdd(formData)
     setOpen(false)
     setStep(1)
-    setFormData({ name: "", severity: "Moderate", allergens: [] })
+    setFormData({ name: "", severity: "중간", allergens: [] })
   }
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button className="w-full h-14 bg-secondary text-primary font-bold shadow-md text-lg">
-          <Plus className="h-5 w-5 mr-2" /> Add New Profile
+          <Plus className="h-5 w-5 mr-2" /> 새 프로필 추가
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle>Allergy Profile Wizard</DialogTitle>
-          <DialogDescription>Step {step} of 3</DialogDescription>
+          <DialogTitle>알레르기 프로필 설정</DialogTitle>
+          <DialogDescription>3단계 중 {step}단계</DialogDescription>
         </DialogHeader>
 
         <div className="py-4">
           {step === 1 && (
             <div className="space-y-4">
-              <Label>Who is this profile for?</Label>
+              <Label>누구를 위한 프로필인가요?</Label>
               <Input 
-                placeholder="e.g., Jun (Son), Class A, Myself" 
+                placeholder="예: 준 (아들), 사라, 나" 
                 value={formData.name}
                 onChange={(e) => setFormData({...formData, name: e.target.value})}
               />
-              <p className="text-xs text-muted-foreground italic">Tip: Use a name that's easy to identify during scans.</p>
+              <p className="text-xs text-muted-foreground italic">팁: 스캔 시 알아보기 쉬운 이름을 사용하세요.</p>
             </div>
           )}
 
           {step === 2 && (
             <div className="space-y-4">
-              <Label>Select Allergens to Monitor</Label>
+              <Label>관리할 알레르기 항목 선택</Label>
               <div className="grid grid-cols-2 gap-3">
                 {commonAllergens.map(a => (
                   <div key={a} className="flex items-center space-x-2 p-2 rounded-lg border hover:bg-accent transition-colors">
@@ -164,27 +164,27 @@ function ProfileWizard({ onAdd }: { onAdd: (profile: any) => void }) {
 
           {step === 3 && (
             <div className="space-y-6">
-              <Label>Set Sensitivity Level</Label>
+              <Label>민감도 수준 설정</Label>
               <RadioGroup value={formData.severity} onValueChange={(val) => setFormData({...formData, severity: val})}>
                 <div className="flex items-center space-x-2 border p-4 rounded-xl">
-                  <RadioGroupItem value="Severe" id="r1" />
+                  <RadioGroupItem value="심각" id="r1" />
                   <Label htmlFor="r1" className="flex flex-col">
-                    <span className="font-bold">Severe (Anaphylaxis Risk)</span>
-                    <span className="text-xs text-muted-foreground">Strict zero-tolerance, flags cross-contamination.</span>
+                    <span className="font-bold">심각 (아나필락시스 위험)</span>
+                    <span className="text-xs text-muted-foreground">엄격한 제한, 교차 오염 가능성까지 경고합니다.</span>
                   </Label>
                 </div>
                 <div className="flex items-center space-x-2 border p-4 rounded-xl">
-                  <RadioGroupItem value="Moderate" id="r2" />
+                  <RadioGroupItem value="중간" id="r2" />
                   <Label htmlFor="r2" className="flex flex-col">
-                    <span className="font-bold">Moderate (Intolerance)</span>
-                    <span className="text-xs text-muted-foreground">Flags direct ingredients, caution for traces.</span>
+                    <span className="font-bold">중간 (불내증)</span>
+                    <span className="text-xs text-muted-foreground">직접적인 성분 경고, 흔적량 주의.</span>
                   </Label>
                 </div>
                 <div className="flex items-center space-x-2 border p-4 rounded-xl">
-                  <RadioGroupItem value="Mild" id="r3" />
+                  <RadioGroupItem value="경미" id="r3" />
                   <Label htmlFor="r3" className="flex flex-col">
-                    <span className="font-bold">Mild</span>
-                    <span className="text-xs text-muted-foreground">Information only, no critical alerts.</span>
+                    <span className="font-bold">경미</span>
+                    <span className="text-xs text-muted-foreground">정보 제공 목적, 치명적 경고 제외.</span>
                   </Label>
                 </div>
               </RadioGroup>
@@ -194,12 +194,12 @@ function ProfileWizard({ onAdd }: { onAdd: (profile: any) => void }) {
 
         <DialogFooter className="flex-row gap-2">
           {step > 1 && (
-            <Button variant="outline" onClick={() => setStep(step - 1)} className="flex-1">Back</Button>
+            <Button variant="outline" onClick={() => setStep(step - 1)} className="flex-1">이전</Button>
           )}
           {step < 3 ? (
-            <Button onClick={() => setStep(step + 1)} className="flex-1 bg-primary text-white" disabled={step === 1 && !formData.name}>Next Step</Button>
+            <Button onClick={() => setStep(step + 1)} className="flex-1 bg-primary text-white" disabled={step === 1 && !formData.name}>다음 단계</Button>
           ) : (
-            <Button onClick={handleSubmit} className="flex-1 bg-primary text-white">Create Profile</Button>
+            <Button onClick={handleSubmit} className="flex-1 bg-primary text-white">프로필 생성</Button>
           )}
         </DialogFooter>
       </DialogContent>

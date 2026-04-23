@@ -38,25 +38,22 @@ import { cn } from "@/lib/utils"
 
 export default function ResultPage() {
   const searchParams = useSearchParams()
-  const profileName = searchParams.get("profile") || "Jun (Son)"
+  const profileName = searchParams.get("profile") || "준 (아들)"
   
   const [loading, setLoading] = useState(true)
   const [data, setData] = useState<IngredientParsingOutput | null>(null)
   const [rationales, setRationales] = useState<Record<string, AllergenRationaleOutput>>({})
 
-  // Mock data for initial UI simulation
   useEffect(() => {
     const simulateDataFetch = async () => {
-      // In a real app, we'd use ingredientParsing with a real photo or text
-      // We'll simulate the result of that flow for this UI demo
       const mockResult: IngredientParsingOutput = {
         parsedIngredients: [
-          { name: "Wheat Flour", isAllergen: false, triggeredAllergens: [] },
-          { name: "Sugar", isAllergen: false, triggeredAllergens: [] },
-          { name: "Milk Solids", isAllergen: true, triggeredAllergens: ["milk"] },
-          { name: "Vegetable Oil", isAllergen: false, triggeredAllergens: [] },
-          { name: "Peanut Paste", isAllergen: true, triggeredAllergens: ["peanuts"] },
-          { name: "Natural Flavors", isAllergen: false, triggeredAllergens: [] },
+          { name: "밀가루", isAllergen: false, triggeredAllergens: [] },
+          { name: "설탕", isAllergen: false, triggeredAllergens: [] },
+          { name: "우유 고형분", isAllergen: true, triggeredAllergens: ["우유"] },
+          { name: "식물성 유지", isAllergen: false, triggeredAllergens: [] },
+          { name: "땅콩 페이스트", isAllergen: true, triggeredAllergens: ["땅콩"] },
+          { name: "천연 향료", isAllergen: false, triggeredAllergens: [] },
         ]
       }
       
@@ -72,10 +69,9 @@ export default function ResultPage() {
   const fetchRationale = async (allergen: string) => {
     if (rationales[allergen]) return
     
-    // Call the real AI flow
     const rationale = await getAllergenRationale({
       allergenName: allergen,
-      userAllergyProfile: `${profileName} has a severe allergy to ${allergen}`
+      userAllergyProfile: `${profileName}님은 ${allergen}에 심한 알레르기가 있습니다.`
     })
     
     setRationales(prev => ({ ...prev, [allergen]: rationale }))
@@ -86,7 +82,6 @@ export default function ResultPage() {
 
   return (
     <div className="bg-background min-h-screen pb-24">
-      {/* Dynamic Header based on safety */}
       <div className={cn(
         "p-8 pt-12 text-white flex flex-col items-center text-center transition-colors duration-500 rounded-b-[3rem]",
         loading ? "bg-muted" : isDangerous ? "bg-danger" : "bg-success"
@@ -117,19 +112,18 @@ export default function ResultPage() {
               )}
             </div>
             <h1 className="text-3xl font-bold mb-2">
-              {isDangerous ? "Danger Detected!" : "Verified Safe"}
+              {isDangerous ? "위험 감지!" : "안전 확인됨"}
             </h1>
             <p className="font-medium opacity-90">
               {isDangerous 
-                ? `${triggeredAllergensCount} trigger items found for ${profileName}` 
-                : `No allergens detected for ${profileName}`}
+                ? `${profileName}님의 알레르기 유발 항목 ${triggeredAllergensCount}개가 발견되었습니다.` 
+                : `${profileName}님에게 안전한 제품입니다.`}
             </p>
           </>
         )}
       </div>
 
       <div className="px-6 -mt-8 space-y-6">
-        {/* Product Info Card */}
         <Card className="shadow-lg">
           <CardContent className="p-4 flex gap-4">
             <div className="h-20 w-20 bg-muted rounded-lg overflow-hidden shrink-0">
@@ -140,23 +134,22 @@ export default function ResultPage() {
                />
             </div>
             <div className="flex flex-col justify-center">
-              <h2 className="text-lg font-bold">Nature's Valley Granola</h2>
-              <p className="text-xs text-muted-foreground">Oats 'n Honey Variety Pack</p>
+              <h2 className="text-lg font-bold">네이처 밸리 그래놀라</h2>
+              <p className="text-xs text-muted-foreground">오츠 앤 허니 버라이어티 팩</p>
               <div className="flex gap-2 mt-2">
-                 <Badge variant="outline" className="text-[10px] text-primary border-primary">Certified Nut-Free</Badge>
-                 <Badge variant="outline" className="text-[10px] text-success border-success">Verified Facility</Badge>
+                 <Badge variant="outline" className="text-[10px] text-primary border-primary">견과류 프리 인증</Badge>
+                 <Badge variant="outline" className="text-[10px] text-success border-success">검증된 시설</Badge>
               </div>
             </div>
           </CardContent>
         </Card>
 
-        {/* Ingredient Breakdown */}
         <Card>
           <CardHeader className="pb-2">
             <CardTitle className="text-lg flex items-center gap-2">
-              <FileSearch className="h-5 w-5" /> Smart Ingredient List
+              <FileSearch className="h-5 w-5" /> 스마트 성분 분석
             </CardTitle>
-            <CardDescription>Allergens are highlighted based on {profileName}'s profile.</CardDescription>
+            <CardDescription>{profileName}님의 프로필을 바탕으로 분석된 결과입니다.</CardDescription>
           </CardHeader>
           <CardContent>
             {loading ? (
@@ -183,11 +176,10 @@ export default function ResultPage() {
           </CardContent>
         </Card>
 
-        {/* Scientific Rationale Accordion */}
         {isDangerous && !loading && (
           <section>
             <h3 className="text-lg font-bold mb-3 flex items-center gap-2">
-              <Info className="h-5 w-5 text-primary" /> Scientific Rationale
+              <Info className="h-5 w-5 text-primary" /> 과학적 근거
             </h3>
             <Accordion type="single" collapsible className="w-full space-y-2">
               {data?.parsedIngredients.filter(i => i.isAllergen).map((ing, idx) => (
@@ -199,8 +191,8 @@ export default function ResultPage() {
                 >
                   <AccordionTrigger className="hover:no-underline py-4">
                     <div className="flex flex-col items-start text-left">
-                      <span className="font-bold text-danger text-sm">Flagged: {ing.name}</span>
-                      <span className="text-xs text-muted-foreground font-medium">Why was this identified?</span>
+                      <span className="font-bold text-danger text-sm">위험 요소: {ing.name}</span>
+                      <span className="text-xs text-muted-foreground font-medium">왜 위험한가요?</span>
                     </div>
                   </AccordionTrigger>
                   <AccordionContent className="pb-4">
@@ -215,7 +207,7 @@ export default function ResultPage() {
                           {rationales[ing.triggeredAllergens[0]].explanation}
                         </p>
                         <div className="space-y-2">
-                          <p className="text-[10px] uppercase tracking-wider font-bold text-muted-foreground">Trusted Resources</p>
+                          <p className="text-[10px] uppercase tracking-wider font-bold text-muted-foreground">신뢰할 수 있는 정보원</p>
                           {rationales[ing.triggeredAllergens[0]].resources.map((res, rIdx) => (
                             <a 
                               key={rIdx} 
@@ -238,13 +230,12 @@ export default function ResultPage() {
           </section>
         )}
 
-        {/* Action Buttons */}
         <div className="grid grid-cols-2 gap-4">
           <Button variant="outline" className="h-12 border-primary text-primary font-bold">
-            <MessageSquareWarning className="h-4 w-4 mr-2" /> Report Error
+            <MessageSquareWarning className="h-4 w-4 mr-2" /> 오류 신고
           </Button>
           <Button className="h-12 bg-primary text-white font-bold">
-            <Share2 className="h-4 w-4 mr-2" /> Share Safety Card
+            <Share2 className="h-4 w-4 mr-2" /> 안전 카드 공유
           </Button>
         </div>
       </div>

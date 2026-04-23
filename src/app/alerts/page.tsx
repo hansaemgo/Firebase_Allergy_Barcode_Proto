@@ -9,8 +9,8 @@ export default function AlertsPage() {
     <div className="max-w-md mx-auto min-h-screen bg-background pb-20">
       <header className="p-8 pb-4 flex justify-between items-center">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Safety Alerts</h1>
-          <p className="text-muted-foreground font-medium">Recalls & community reports.</p>
+          <h1 className="text-3xl font-bold tracking-tight">안전 알림</h1>
+          <p className="text-muted-foreground font-medium">리콜 및 커뮤니티 보고서.</p>
         </div>
         <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center text-primary relative">
           <Bell className="h-6 w-6" />
@@ -22,13 +22,13 @@ export default function AlertsPage() {
         {/* Urgent Recall */}
         <section className="space-y-3">
           <div className="flex items-center gap-2 text-destructive font-bold text-sm uppercase tracking-wider">
-            <AlertTriangle className="h-4 w-4" /> Urgent Manufacturer Recalls
+            <AlertTriangle className="h-4 w-4" /> 긴급 제조사 리콜
           </div>
           <AlertCard 
-            title="OatMilk Plus (Traces of Soy)"
-            description="Specific to batches #4400 through #4500. Manufacturer identified cross-contamination in line 4."
-            date="2 hours ago"
-            impact="Affects Sarah"
+            title="오트밀크 플러스 (대두 성분 혼입)"
+            description="배치 #4400 ~ #4500 해당. 제조 공정 중 4번 라인에서 교차 오염 확인됨."
+            date="2시간 전"
+            impact="사라 프로필에 영향"
             type="recall"
           />
         </section>
@@ -36,27 +36,27 @@ export default function AlertsPage() {
         {/* Community Reports */}
         <section className="space-y-3 mt-8">
           <div className="flex items-center gap-2 text-primary font-bold text-sm uppercase tracking-wider">
-            <Info className="h-4 w-4" /> Community Safety Insights
+            <Info className="h-4 w-4" /> 커뮤니티 안전 정보
           </div>
           <AlertCard 
-            title="Nature Valley Factory Note"
-            description="Local childcare provider reported discovery of unlisted almond traces in individual wrapper packs."
-            date="Today, 9:15 AM"
-            impact="Affects Jun (Son)"
+            title="네이처 밸리 팩토리 공지"
+            description="지역 보육시설에서 개별 포장 팩에 기재되지 않은 아몬드 흔적 발견 보고."
+            date="오늘, 오전 9:15"
+            impact="준 (아들) 프로필에 영향"
             type="community"
           />
           <AlertCard 
-            title="Whole Grain Bread Update"
-            description="Recipe change: Now contains sesame seeds. Label update pending in some regions."
-            date="Yesterday"
-            impact="No matching profiles"
+            title="통밀 식빵 레시피 변경"
+            description="레시피 변경: 이제 참깨 성분을 포함합니다. 일부 지역 라벨 업데이트 대기 중."
+            date="어제"
+            impact="해당하는 프로필 없음"
             type="update"
           />
         </section>
 
         {/* Subscription Manage */}
         <Button variant="outline" className="w-full h-12 border-dashed border-2">
-          Manage Alert Preferences
+          알림 설정 관리
         </Button>
       </div>
 
@@ -88,11 +88,11 @@ function AlertCard({ title, description, date, impact, type }: { title: string; 
         </div>
         <p className="text-xs text-foreground/80 leading-relaxed">{description}</p>
         <div className="pt-2 flex justify-between items-center border-t border-black/5">
-          <Badge variant="outline" className={`text-[10px] px-1.5 py-0 ${impact.includes('Affects') ? 'bg-destructive/10 text-destructive border-destructive/20' : ''}`}>
+          <Badge variant="outline" className={`text-[10px] px-1.5 py-0 ${impact.includes('영향') ? 'bg-destructive/10 text-destructive border-destructive/20' : ''}`}>
             {impact}
           </Badge>
           <Button variant="link" size="sm" className="h-6 text-[10px] font-bold p-0">
-            View Details <ChevronRight className="ml-1 h-3 w-3" />
+            상세 보기 <ChevronRight className="ml-1 h-3 w-3" />
           </Button>
         </div>
       </CardContent>

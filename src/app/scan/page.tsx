@@ -15,12 +15,12 @@ import { cn } from "@/lib/utils"
 
 export default function ScanPage() {
   const router = useRouter()
-  const [selectedProfile, setSelectedProfile] = useState("Jun (Son)")
+  const [selectedProfile, setSelectedProfile] = useState("준 (아들)")
   const [isScanning, setIsScanning] = useState(false)
 
   const handleScan = () => {
     setIsScanning(true)
-    // Simulate a successful scan after 2 seconds
+    // 2초 후 성공적인 스캔 시뮬레이션
     setTimeout(() => {
       router.push("/result?profile=" + encodeURIComponent(selectedProfile))
     }, 2000)
@@ -48,14 +48,14 @@ export default function ScanPage() {
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-48">
-            <DropdownMenuItem onClick={() => setSelectedProfile("Jun (Son)")}>
-              Jun (Son) {selectedProfile === "Jun (Son)" && <Check className="ml-auto h-4 w-4" />}
+            <DropdownMenuItem onClick={() => setSelectedProfile("준 (아들)")}>
+              준 (아들) {selectedProfile === "준 (아들)" && <Check className="ml-auto h-4 w-4" />}
             </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => setSelectedProfile("Sarah")}>
-              Sarah {selectedProfile === "Sarah" && <Check className="ml-auto h-4 w-4" />}
+            <DropdownMenuItem onClick={() => setSelectedProfile("사라")}>
+              사라 {selectedProfile === "사라" && <Check className="ml-auto h-4 w-4" />}
             </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => setSelectedProfile("All Active")}>
-              All Active {selectedProfile === "All Active" && <Check className="ml-auto h-4 w-4" />}
+            <DropdownMenuItem onClick={() => setSelectedProfile("전체 활성")}>
+              전체 활성 {selectedProfile === "전체 활성" && <Check className="ml-auto h-4 w-4" />}
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
@@ -85,7 +85,7 @@ export default function ScanPage() {
           
           {isScanning && (
             <div className="bg-white/20 backdrop-blur-sm inset-0 absolute flex flex-col items-center justify-center animate-pulse">
-              <p className="text-white font-bold text-lg">Analyzing...</p>
+              <p className="text-white font-bold text-lg">분석 중...</p>
             </div>
           )}
         </div>
@@ -95,7 +95,7 @@ export default function ScanPage() {
       <div className="bg-black/80 backdrop-blur-md p-8 pt-4 rounded-t-[3rem] z-20">
         <div className="flex flex-col items-center space-y-6">
           <p className="text-white/60 text-sm font-medium text-center">
-            Position barcode or ingredient list within the frame
+            바코드나 성분표를 프레임 안에 맞춰주세요
           </p>
           
           <div className="flex items-center gap-8">

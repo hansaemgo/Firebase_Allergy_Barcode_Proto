@@ -13,8 +13,8 @@ export default function Home() {
       {/* Header */}
       <header className="p-6 bg-primary text-white flex justify-between items-center rounded-b-[2rem] shadow-lg">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight">SafeBite</h1>
-          <p className="text-sm opacity-80 font-medium">Protecting what matters.</p>
+          <h1 className="text-2xl font-bold tracking-tight">세이프바이트</h1>
+          <p className="text-sm opacity-80 font-medium">소중한 가족을 위한 안전한 선택.</p>
         </div>
         <div className="h-10 w-10 bg-secondary rounded-full flex items-center justify-center text-primary">
           <ShieldCheck className="h-6 w-6" />
@@ -28,11 +28,11 @@ export default function Home() {
             <CardContent className="p-0 flex flex-col items-center">
               <div className="w-full bg-white/20 p-8 flex flex-col items-center text-primary">
                 <Scan className="h-16 w-16 mb-4" />
-                <h2 className="text-2xl font-bold">Instant Safety Scan</h2>
-                <p className="text-sm font-medium opacity-80">Scan any product label or barcode</p>
+                <h2 className="text-2xl font-bold">즉석 안전 스캔</h2>
+                <p className="text-sm font-medium opacity-80">제품 라벨이나 바코드를 스캔하세요</p>
               </div>
               <div className="w-full bg-primary/10 p-4 text-center text-primary font-bold">
-                Tap to Start Scanning
+                탭하여 스캔 시작
               </div>
             </CardContent>
           </Card>
@@ -42,15 +42,15 @@ export default function Home() {
         <section className="mt-10">
           <div className="flex justify-between items-center mb-4">
             <h3 className="text-lg font-bold flex items-center gap-2">
-              <Users className="h-5 w-5 text-primary" /> Active Profiles
+              <Users className="h-5 w-5 text-primary" /> 활성 프로필
             </h3>
             <Link href="/profiles" className="text-sm text-primary font-semibold flex items-center">
-              Manage <ChevronRight className="h-4 w-4" />
+              관리 <ChevronRight className="h-4 w-4" />
             </Link>
           </div>
           <div className="grid grid-cols-2 gap-4">
-            <ProfileCard name="Jun (Son)" allergens={["Milk", "Peanuts"]} color="bg-blue-100" />
-            <ProfileCard name="Sarah" allergens={["Gluten", "Soy"]} color="bg-pink-100" />
+            <ProfileCard name="준 (아들)" allergens={["우유", "땅콩"]} color="bg-blue-100" />
+            <ProfileCard name="사라" allergens={["글루텐", "대두"]} color="bg-pink-100" />
           </div>
         </section>
 
@@ -58,7 +58,7 @@ export default function Home() {
         <section className="mt-10">
           <div className="flex justify-between items-center mb-4">
             <h3 className="text-lg font-bold flex items-center gap-2">
-              <AlertTriangle className="h-5 w-5 text-destructive" /> Safety Alerts
+              <AlertTriangle className="h-5 w-5 text-destructive" /> 안전 알림
             </h3>
           </div>
           <Card className="border-l-4 border-l-destructive">
@@ -67,9 +67,9 @@ export default function Home() {
                 <AlertTriangle className="h-5 w-5 text-destructive" />
               </div>
               <div>
-                <h4 className="font-bold text-sm">Product Recall: OatMilk Plus</h4>
-                <p className="text-xs text-muted-foreground mt-1">Found traces of undeclared soy in Batch #4459. Relevant to profile: Sarah.</p>
-                <Link href="/alerts" className="text-xs text-primary font-bold mt-2 block">View Details</Link>
+                <h4 className="font-bold text-sm">제품 리콜: 오트밀크 플러스</h4>
+                <p className="text-xs text-muted-foreground mt-1">배치 #4459에서 미표기 대두 성분 발견. 사라 프로필 관련 항목.</p>
+                <Link href="/alerts" className="text-xs text-primary font-bold mt-2 block">상세 보기</Link>
               </div>
             </CardContent>
           </Card>
@@ -77,11 +77,11 @@ export default function Home() {
 
         {/* Recent Scans */}
         <section className="mt-10">
-          <h3 className="text-lg font-bold mb-4">Recent Verifications</h3>
+          <h3 className="text-lg font-bold mb-4">최근 검증 내역</h3>
           <div className="space-y-3">
-            <RecentScanItem name="Nature Valley Granola" date="Today, 2:30 PM" status="danger" />
-            <RecentScanItem name="Greek Yogurt" date="Today, 10:15 AM" status="success" />
-            <RecentScanItem name="Whole Grain Bread" date="Yesterday" status="caution" />
+            <RecentScanItem name="네이처 밸리 그래놀라" date="오늘, 오후 2:30" status="danger" />
+            <RecentScanItem name="그릭 요거트" date="오늘, 오전 10:15" status="success" />
+            <RecentScanItem name="통밀 식빵" date="어제" status="caution" />
           </div>
         </section>
       </div>

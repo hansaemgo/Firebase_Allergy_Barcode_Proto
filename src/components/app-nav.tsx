@@ -6,11 +6,11 @@ import { Home, Scan, Bell, User, ShieldAlert } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 const navItems = [
-  { label: "Home", icon: Home, href: "/" },
-  { label: "Scan", icon: Scan, href: "/scan" },
-  { label: "Alerts", icon: Bell, href: "/alerts" },
-  { label: "Profiles", icon: User, href: "/profiles" },
-  { label: "Admin", icon: ShieldAlert, href: "/admin" },
+  { label: "홈", icon: Home, href: "/" },
+  { label: "스캔", icon: Scan, href: "/scan" },
+  { label: "알림", icon: Bell, href: "/alerts" },
+  { label: "프로필", icon: User, href: "/profiles" },
+  { label: "관리자", icon: ShieldAlert, href: "/admin" },
 ]
 
 export function AppNav() {
