@@ -1,3 +1,4 @@
+
 "use client"
 
 import { useState, useEffect } from "react"
@@ -30,13 +31,8 @@ export default function ScanPage() {
     <div className="relative h-screen bg-black overflow-hidden flex flex-col">
       {/* Top Controls */}
       <div className="absolute top-0 left-0 right-0 p-6 flex justify-between items-center z-20">
-        <Button 
-          variant="ghost" 
-          size="icon" 
-          className="text-white hover:bg-white/20"
-          onClick={() => router.back()}
-        >
-          <X className="h-6 w-6" />
+        <Button variant="ghost" size="icon" className="text-white hover:bg-white/20">
+          <Flashlight className="h-6 w-6" />
         </Button>
         
         <DropdownMenu>
@@ -60,8 +56,13 @@ export default function ScanPage() {
           </DropdownMenuContent>
         </DropdownMenu>
 
-        <Button variant="ghost" size="icon" className="text-white hover:bg-white/20">
-          <Flashlight className="h-6 w-6" />
+        <Button 
+          variant="ghost" 
+          size="icon" 
+          className="text-white hover:bg-white/20"
+          onClick={() => router.back()}
+        >
+          <X className="h-6 w-6" />
         </Button>
       </div>
 
