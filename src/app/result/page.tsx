@@ -129,7 +129,7 @@ export default function ResultPage() {
             <div className="h-20 w-20 bg-muted rounded-lg overflow-hidden shrink-0">
                <img 
                  src="https://picsum.photos/seed/product/200/200" 
-                 alt="Product" 
+                 alt="제품 이미지" 
                  className="h-full w-full object-cover"
                />
             </div>
