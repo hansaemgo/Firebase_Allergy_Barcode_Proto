@@ -1,3 +1,4 @@
+
 "use client"
 
 import { useState } from "react"
@@ -50,14 +51,14 @@ export default function ProfilesPage() {
                         <div className="h-9 w-9 rounded-full bg-muted flex items-center justify-center text-primary">
                           <User className="h-5 w-5" />
                         </div>
-                        <div>
-                          <h3 className="font-bold text-base leading-tight">{profile.name}</h3>
+                        <div className="overflow-hidden">
+                          <h3 className="font-bold text-base leading-tight truncate">{profile.name}</h3>
                           <Badge variant={profile.severity === "심각" ? "destructive" : "outline"} className="text-[9px] px-1.5 py-0 mt-0.5">
                             {profile.severity}
                           </Badge>
                         </div>
                       </div>
-                      <div className="flex gap-1">
+                      <div className="flex gap-1 shrink-0">
                         <Button variant="ghost" size="icon" className="h-7 w-7 text-muted-foreground">
                           <Settings className="h-3.5 w-3.5" />
                         </Button>

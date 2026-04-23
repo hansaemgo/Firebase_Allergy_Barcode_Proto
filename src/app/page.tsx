@@ -10,8 +10,8 @@ import { cn } from "@/lib/utils"
 export default function Home() {
   return (
     <div className="max-w-md mx-auto min-h-screen bg-background pb-20">
-      {/* Header */}
-      <header className="p-6 bg-primary text-white flex justify-between items-center rounded-b-[2rem] shadow-lg">
+      {/* Header - pb-6(24px) -> pb-9(36px) to increase background height by ~12px */}
+      <header className="pt-6 px-6 pb-9 bg-primary text-white flex justify-between items-center rounded-b-[2rem] shadow-lg">
         <div>
           <h1 className="text-xl font-bold tracking-tight">SafeBite</h1>
           <p className="text-[10px] opacity-80 font-medium">Safe choices for your loved ones.</p>
@@ -21,16 +21,17 @@ export default function Home() {
         </div>
       </header>
 
-      {/* -mt-6 (24px) -> -mt-3.5 (14px) for 10px lower position */}
+      {/* Main Card Positioned lower */}
       <div className="px-6 -mt-3.5">
         {/* Main CTA */}
         <Link href="/scan">
           <Card className="bg-secondary border-none shadow-xl hover:scale-[1.02] transition-transform cursor-pointer overflow-hidden">
             <CardContent className="p-0 flex flex-col items-center">
-              <div className="w-full bg-white/20 p-8 flex flex-col items-center text-primary">
-                <Scan className="h-16 w-16 mb-4" />
-                <h2 className="text-lg font-bold">즉석 안전 스캔</h2>
-                <p className="text-[10px] font-medium opacity-80 text-center">제품 라벨이나 바코드를 스캔하세요</p>
+              {/* p-8 -> p-6 to prevent text wrapping on small screens */}
+              <div className="w-full bg-white/20 p-6 flex flex-col items-center text-primary">
+                <Scan className="h-14 w-14 mb-4" />
+                <h2 className="text-lg font-bold truncate">즉석 안전 스캔</h2>
+                <p className="text-[10px] font-medium opacity-80 text-center truncate">제품 라벨이나 바코드를 스캔하세요</p>
               </div>
               <div className="w-full bg-primary/10 p-4 text-center text-primary font-bold text-sm">
                 탭하여 스캔 시작
