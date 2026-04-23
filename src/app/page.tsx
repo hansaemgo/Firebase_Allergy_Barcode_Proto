@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { AppNav } from "@/components/app-nav"
-import { Scan, Users, AlertTriangle, ShieldCheck, ChevronRight } from "lucide-react"
+import { Scan, Users, User, AlertTriangle, ShieldCheck, ChevronRight } from "lucide-react"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
 
@@ -95,8 +95,8 @@ function ProfileCard({ name, allergens, color }: { name: string; allergens: stri
     <Card className={`${color} border-none shadow-sm`}>
       <CardContent className="p-4">
         <div className="flex items-center gap-3 mb-2">
-          <div className="h-8 w-8 rounded-full bg-white flex items-center justify-center font-bold text-xs text-primary">
-            {name[0]}
+          <div className="h-8 w-8 rounded-full bg-white flex items-center justify-center text-primary">
+            <User className="h-4 w-4" />
           </div>
           <h4 className="font-bold text-sm">{name}</h4>
         </div>

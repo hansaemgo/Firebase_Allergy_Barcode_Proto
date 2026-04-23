@@ -47,8 +47,8 @@ export default function ProfilesPage() {
                   <div className="flex-1 p-5">
                     <div className="flex justify-between items-start mb-4">
                       <div className="flex items-center gap-3">
-                        <div className="h-10 w-10 rounded-full bg-muted flex items-center justify-center font-bold text-primary">
-                          {profile.name[0]}
+                        <div className="h-10 w-10 rounded-full bg-muted flex items-center justify-center text-primary">
+                          <User className="h-6 w-6" />
                         </div>
                         <div>
                           <h3 className="font-bold text-lg">{profile.name}</h3>
