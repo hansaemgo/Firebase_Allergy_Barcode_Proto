@@ -1,0 +1,22 @@
+{
+  "placeholderImages": [
+    {
+      "id": "hero-scanner",
+      "description": "Person scanning a food product in a grocery store",
+      "imageUrl": "https://picsum.photos/seed/safebite1/800/600",
+      "imageHint": "grocery scanning"
+    },
+    {
+      "id": "child-profile",
+      "description": "Happy child eating a snack",
+      "imageUrl": "https://picsum.photos/seed/safebite2/400/400",
+      "imageHint": "happy child"
+    },
+    {
+      "id": "product-label",
+      "description": "Ingredient list on a product package",
+      "imageUrl": "https://picsum.photos/seed/safebite3/600/400",
+      "imageHint": "food label"
+    }
+  ]
+}
