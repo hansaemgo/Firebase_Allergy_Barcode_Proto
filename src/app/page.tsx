@@ -19,13 +19,13 @@ export default function Home() {
         </div>
       </header>
 
-      <div className="px-6 -mt-[19px]">
+      <div className="px-6 -mt-[14px]">
         <Link href="/scan">
           <Card className="bg-secondary border-none shadow-xl hover:scale-[1.02] transition-transform cursor-pointer overflow-hidden">
             <CardContent className="p-0 flex flex-col items-center">
               <div className="w-full bg-white/20 p-6 flex flex-col items-center text-primary">
                 <Scan className="h-14 w-14 mb-4" />
-                <h2 className="text-lg font-bold truncate">즉석 안전 스캔</h2>
+                <h2 className="text-base font-bold truncate">즉석 안전 스캔</h2>
                 <p className="text-[10px] font-medium opacity-80 text-center truncate">제품 라벨이나 바코드를 스캔하세요</p>
               </div>
               <div className="w-full bg-primary/10 p-4 text-center text-primary font-bold text-sm">
@@ -37,7 +37,7 @@ export default function Home() {
 
         <section className="mt-8">
           <div className="flex justify-between items-center mb-3">
-            <h3 className="text-base font-bold flex items-center gap-2">
+            <h3 className="text-sm font-bold flex items-center gap-2">
               <Users className="h-4 w-4 text-primary" /> 활성 프로필
             </h3>
             <Link href="/profiles" className="text-xs text-primary font-semibold flex items-center">
@@ -52,7 +52,7 @@ export default function Home() {
 
         <section className="mt-8">
           <div className="flex justify-between items-center mb-3">
-            <h3 className="text-base font-bold flex items-center gap-2">
+            <h3 className="text-sm font-bold flex items-center gap-2">
               <AlertTriangle className="h-4 w-4 text-destructive" /> 안전 알림
             </h3>
           </div>
@@ -71,7 +71,7 @@ export default function Home() {
         </section>
 
         <section className="mt-8">
-          <h3 className="text-base font-bold mb-3">최근 검증 내역</h3>
+          <h3 className="text-sm font-bold mb-3">최근 검증 내역</h3>
           <div className="space-y-2">
             <RecentScanItem name="네이처 밸리 그래놀라" date="오늘, 오후 2:30" status="danger" />
             <RecentScanItem name="그릭 요거트" date="오늘, 오전 10:15" status="success" />

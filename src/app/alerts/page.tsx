@@ -1,4 +1,3 @@
-
 import { AppNav } from "@/components/app-nav"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -22,7 +21,7 @@ export default function AlertsPage() {
       <div className="px-6 space-y-6">
         {/* Urgent Recall */}
         <section className="space-y-3">
-          <div className="flex items-center gap-2 text-destructive font-bold text-xs uppercase tracking-wider">
+          <div className="flex items-center gap-2 text-destructive font-bold text-[10px] uppercase tracking-wider">
             <AlertTriangle className="h-3.5 w-3.5" /> 긴급 제조사 리콜
           </div>
           <AlertCard 
@@ -36,7 +35,7 @@ export default function AlertsPage() {
 
         {/* Community Reports */}
         <section className="space-y-3 mt-6">
-          <div className="flex items-center gap-2 text-primary font-bold text-xs uppercase tracking-wider">
+          <div className="flex items-center gap-2 text-primary font-bold text-[10px] uppercase tracking-wider">
             <Info className="h-3.5 w-3.5" /> 커뮤니티 안전 정보
           </div>
           <AlertCard 
@@ -56,7 +55,7 @@ export default function AlertsPage() {
         </section>
 
         {/* Subscription Manage */}
-        <Button variant="outline" className="w-full h-11 border-dashed border-2 text-sm font-bold">
+        <Button variant="outline" className="w-full h-11 border-dashed border-2 text-xs font-bold mt-4">
           알림 설정 관리
         </Button>
       </div>
@@ -68,9 +67,9 @@ export default function AlertsPage() {
 
 function AlertCard({ title, description, date, impact, type }: { title: string; description: string; date: string; impact: string; type: 'recall' | 'community' | 'update' }) {
   const colors = {
-    recall: 'bg-destructive/10 border-destructive text-destructive',
-    community: 'bg-primary/10 border-primary text-primary',
-    update: 'bg-muted border-border text-muted-foreground'
+    recall: 'bg-destructive/5 border-destructive text-destructive',
+    community: 'bg-primary/5 border-primary text-primary',
+    update: 'bg-muted/30 border-border text-muted-foreground'
   }
 
   return (
@@ -79,17 +78,17 @@ function AlertCard({ title, description, date, impact, type }: { title: string; 
         <div className="flex justify-between items-start gap-2">
           <div className="space-y-0.5 overflow-hidden">
              <h4 className="font-bold text-sm leading-tight truncate">{title}</h4>
-             <div className="flex items-center gap-1 text-[9px] opacity-70">
+             <div className="flex items-center gap-1 text-[9px] opacity-70 font-medium">
                <Calendar className="h-2.5 w-2.5" /> {date}
              </div>
           </div>
-          <Button variant="ghost" size="icon" className="h-7 w-7 -mt-1 -mr-1 shrink-0">
+          <Button variant="ghost" size="icon" className="h-7 w-7 -mt-1 -mr-1 shrink-0 rounded-full">
             <Share2 className="h-3.5 w-3.5" />
           </Button>
         </div>
-        <p className="text-[11px] text-foreground/80 leading-relaxed line-clamp-2">{description}</p>
+        <p className="text-[11px] text-foreground/80 leading-relaxed line-clamp-2 font-medium">{description}</p>
         <div className="pt-2 flex justify-between items-center border-t border-black/5">
-          <Badge variant="outline" className={`text-[9px] px-1.5 py-0 ${impact.includes('영향') ? 'bg-destructive/10 text-destructive border-destructive/20' : ''}`}>
+          <Badge variant="outline" className={`text-[9px] px-1.5 py-0 font-bold ${impact.includes('영향') ? 'bg-destructive/10 text-destructive border-destructive/20' : ''}`}>
             {impact}
           </Badge>
           <Button variant="link" size="sm" className="h-5 text-[9px] font-bold p-0">

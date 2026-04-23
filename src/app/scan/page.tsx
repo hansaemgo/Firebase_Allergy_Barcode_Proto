@@ -1,4 +1,3 @@
-
 "use client"
 
 import { useState, useEffect } from "react"
@@ -76,7 +75,7 @@ export default function ScanPage() {
         />
         
         {/* Viewfinder Overlay */}
-        <div className="relative w-72 h-72 border-2 border-white/50 rounded-3xl overflow-hidden scanner-viewfinder z-10 flex items-center justify-center">
+        <div className="relative w-64 h-64 border-2 border-white/50 rounded-3xl overflow-hidden scanner-viewfinder z-10 flex items-center justify-center">
           <div className="absolute inset-0 border-8 border-transparent" />
           {/* Scanning Animation Corners */}
           <div className="absolute top-0 left-0 w-8 h-8 border-t-4 border-l-4 border-secondary" />
@@ -93,9 +92,9 @@ export default function ScanPage() {
       </div>
 
       {/* Bottom Interface */}
-      <div className="bg-black/80 backdrop-blur-md p-8 pt-4 rounded-t-[3rem] z-20">
+      <div className="bg-black/80 backdrop-blur-md p-8 pb-28 pt-4 rounded-t-[3rem] z-20">
         <div className="flex flex-col items-center space-y-6">
-          <p className="text-white/60 text-sm font-medium text-center">
+          <p className="text-white/60 text-[11px] font-medium text-center">
             바코드나 성분표를 프레임 안에 맞춰주세요
           </p>
           

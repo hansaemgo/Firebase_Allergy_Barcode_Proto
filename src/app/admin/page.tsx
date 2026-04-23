@@ -25,10 +25,10 @@ export default function AdminPage() {
             <ShieldAlert className="h-6 w-6 text-primary shrink-0" />
             <div className="min-w-0">
               <h1 className="text-xl font-bold truncate leading-tight">Admin Command Center</h1>
-              <p className="text-[10px] text-muted-foreground truncate">Manage data integrity and safety reports.</p>
+              <p className="text-[10px] text-muted-foreground truncate font-medium">Manage data integrity and safety reports.</p>
             </div>
           </div>
-          <Button variant="outline" size="sm" className="shrink-0 h-8 text-xs px-2">내보내기</Button>
+          <Button variant="outline" size="sm" className="shrink-0 h-8 text-xs px-2 font-bold">내보내기</Button>
         </div>
         
         <div className="relative">
@@ -42,29 +42,29 @@ export default function AdminPage() {
           <CardContent className="p-4 flex flex-col items-center text-center">
             <Clock className="h-6 w-6 mb-1 opacity-80" />
             <h3 className="text-xl font-bold">24</h3>
-            <p className="text-[10px] opacity-80">대기 중</p>
+            <p className="text-[10px] opacity-80 font-bold uppercase tracking-wider">대기 중</p>
           </CardContent>
         </Card>
         <Card className="shadow-sm">
           <CardContent className="p-4 flex flex-col items-center text-center">
             <CheckCircle2 className="h-6 w-6 mb-1 text-success" />
             <h3 className="text-xl font-bold">1,245</h3>
-            <p className="text-[10px] text-muted-foreground">검증됨</p>
+            <p className="text-[10px] text-muted-foreground font-bold uppercase tracking-wider">검증됨</p>
           </CardContent>
         </Card>
         <Card className="shadow-sm">
           <CardContent className="p-4 flex flex-col items-center text-center">
             <BarChart3 className="h-6 w-6 mb-1 text-secondary" />
             <h3 className="text-xl font-bold">99.8%</h3>
-            <p className="text-[10px] text-muted-foreground">정확도</p>
+            <p className="text-[10px] text-muted-foreground font-bold uppercase tracking-wider">정확도</p>
           </CardContent>
         </Card>
 
         <Card className="col-span-3">
           <CardHeader className="p-4 pb-2">
             <div className="flex justify-between items-center">
-              <CardTitle className="text-base">검증 대기열</CardTitle>
-              <Badge variant="outline" className="text-[10px] h-5">조치 필요</Badge>
+              <CardTitle className="text-base font-bold">검증 대기열</CardTitle>
+              <Badge variant="outline" className="text-[10px] h-5 font-bold">조치 필요</Badge>
             </div>
           </CardHeader>
           <CardContent className="p-4 pt-0 space-y-3">
@@ -87,17 +87,17 @@ export default function AdminPage() {
 
         <Card className="col-span-3">
           <CardHeader className="p-4 pb-2">
-            <CardTitle className="text-base flex items-center gap-2">
+            <CardTitle className="text-base flex items-center gap-2 font-bold">
               <Database className="h-4 w-4 text-primary" /> 마스터 DB 상태
             </CardTitle>
           </CardHeader>
           <CardContent className="p-4 pt-0 space-y-2">
              <div className="flex justify-between items-center text-xs border-b pb-2">
-               <span>총 알레르기 유발원</span>
+               <span className="font-medium">총 알레르기 유발원</span>
                <span className="font-bold">45</span>
              </div>
              <div className="flex justify-between items-center text-xs border-b pb-2 text-destructive">
-               <span>제조사 리콜</span>
+               <span className="font-medium">제조사 리콜</span>
                <span className="font-bold">3개 활성</span>
              </div>
              <Button className="w-full h-9 bg-secondary text-primary font-bold text-xs mt-2">DB 관리</Button>
@@ -125,13 +125,13 @@ function QueueItem({ product, report, user, time, urgency }: { product: string; 
           <span className="text-[9px] text-muted-foreground shrink-0">{time}</span>
         </div>
         <p className="text-[10px] text-muted-foreground truncate">{report}</p>
-        <p className="text-[9px] font-medium uppercase text-primary">보고자: {user}</p>
+        <p className="text-[9px] font-bold uppercase text-primary">보고자: {user}</p>
       </div>
       <div className="flex gap-1 shrink-0 ml-2">
-        <Button size="icon" variant="ghost" className="h-7 w-7 rounded-full text-success">
+        <Button size="icon" variant="ghost" className="h-7 w-7 rounded-full text-success hover:bg-success/10">
           <CheckCircle2 className="h-4 w-4" />
         </Button>
-        <Button size="icon" variant="ghost" className="h-7 w-7 rounded-full text-destructive">
+        <Button size="icon" variant="ghost" className="h-7 w-7 rounded-full text-destructive hover:bg-destructive/10">
           <XCircle className="h-4 w-4" />
         </Button>
       </div>
