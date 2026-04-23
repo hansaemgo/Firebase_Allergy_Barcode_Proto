@@ -4,7 +4,6 @@ import { Badge } from "@/components/ui/badge"
 import { AppNav } from "@/components/app-nav"
 import { Scan, Users, AlertTriangle, ShieldCheck, ChevronRight } from "lucide-react"
 import Link from "next/link"
-import Image from "next/image"
 import { cn } from "@/lib/utils"
 
 export default function Home() {
@@ -13,8 +12,8 @@ export default function Home() {
       {/* Header */}
       <header className="p-6 bg-primary text-white flex justify-between items-center rounded-b-[2rem] shadow-lg">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight">세이프바이트</h1>
-          <p className="text-sm opacity-80 font-medium">소중한 가족을 위한 안전한 선택.</p>
+          <h1 className="text-2xl font-bold tracking-tight">SafeBite</h1>
+          <p className="text-sm opacity-80 font-medium">Safe choices for your loved ones.</p>
         </div>
         <div className="h-10 w-10 bg-secondary rounded-full flex items-center justify-center text-primary">
           <ShieldCheck className="h-6 w-6" />

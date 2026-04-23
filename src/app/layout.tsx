@@ -3,7 +3,7 @@ import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
-  title: '세이프바이트 | 알레르기 안전 검증',
+  title: 'SafeBite | 알레르기 안전 검증',
   description: '가족을 위한 즉석 알레르기 안전 확인 서비스.',
 };
 
