@@ -83,38 +83,38 @@ export default function ResultPage() {
   return (
     <div className="bg-background min-h-screen pb-24">
       <div className={cn(
-        "p-8 pt-12 text-white flex flex-col items-center text-center transition-colors duration-500 rounded-b-[3rem]",
+        "p-6 pt-10 text-white flex flex-col items-center text-center transition-colors duration-500 rounded-b-[2.5rem]",
         loading ? "bg-muted" : isDangerous ? "bg-danger" : "bg-success"
       )}>
-        <div className="flex justify-between w-full absolute top-6 px-6">
+        <div className="flex justify-between w-full absolute top-5 px-5">
           <Link href="/scan">
-            <Button variant="ghost" size="icon" className="text-white hover:bg-white/20">
-              <ChevronLeft className="h-6 w-6" />
+            <Button variant="ghost" size="icon" className="text-white hover:bg-white/20 h-8 w-8">
+              <ChevronLeft className="h-5 w-5" />
             </Button>
           </Link>
-          <Button variant="ghost" size="icon" className="text-white hover:bg-white/20">
-            <Share2 className="h-6 w-6" />
+          <Button variant="ghost" size="icon" className="text-white hover:bg-white/20 h-8 w-8">
+            <Share2 className="h-5 w-5" />
           </Button>
         </div>
 
         {loading ? (
-          <div className="space-y-4 flex flex-col items-center">
-            <Skeleton className="h-20 w-20 rounded-full bg-white/20" />
-            <Skeleton className="h-8 w-48 bg-white/20" />
+          <div className="space-y-3 flex flex-col items-center">
+            <Skeleton className="h-16 w-16 rounded-full bg-white/20" />
+            <Skeleton className="h-6 w-40 bg-white/20" />
           </div>
         ) : (
           <>
-            <div className="bg-white/20 p-4 rounded-full mb-6">
+            <div className="bg-white/20 p-3 rounded-full mb-4">
               {isDangerous ? (
-                <XCircle className="h-16 w-16" />
+                <XCircle className="h-12 w-12" />
               ) : (
-                <ShieldCheck className="h-16 w-16" />
+                <ShieldCheck className="h-12 w-12" />
               )}
             </div>
-            <h1 className="text-3xl font-bold mb-2">
+            <h1 className="text-xl font-bold mb-1">
               {isDangerous ? "위험 감지!" : "안전 확인됨"}
             </h1>
-            <p className="font-medium opacity-90">
+            <p className="text-sm font-medium opacity-90 truncate max-w-full">
               {isDangerous 
                 ? `${profileName}님의 알레르기 유발 항목 ${triggeredAllergensCount}개가 발견되었습니다.` 
                 : `${profileName}님에게 안전한 제품입니다.`}
@@ -123,52 +123,52 @@ export default function ResultPage() {
         )}
       </div>
 
-      <div className="px-6 -mt-8 space-y-6">
+      <div className="px-5 -mt-6 space-y-5">
         <Card className="shadow-lg">
           <CardContent className="p-4 flex gap-4">
-            <div className="h-20 w-20 bg-muted rounded-lg overflow-hidden shrink-0">
+            <div className="h-16 w-16 bg-muted rounded-lg overflow-hidden shrink-0">
                <img 
                  src="https://picsum.photos/seed/product/200/200" 
                  alt="제품 이미지" 
                  className="h-full w-full object-cover"
                />
             </div>
-            <div className="flex flex-col justify-center">
-              <h2 className="text-lg font-bold">네이처 밸리 그래놀라</h2>
-              <p className="text-xs text-muted-foreground">오츠 앤 허니 버라이어티 팩</p>
-              <div className="flex gap-2 mt-2">
-                 <Badge variant="outline" className="text-[10px] text-primary border-primary">견과류 프리 인증</Badge>
-                 <Badge variant="outline" className="text-[10px] text-success border-success">검증된 시설</Badge>
+            <div className="flex flex-col justify-center overflow-hidden">
+              <h2 className="text-base font-bold truncate">네이처 밸리 그래놀라</h2>
+              <p className="text-[10px] text-muted-foreground truncate">오츠 앤 허니 버라이어티 팩</p>
+              <div className="flex gap-1.5 mt-1.5 overflow-x-auto no-scrollbar">
+                 <Badge variant="outline" className="text-[9px] text-primary border-primary shrink-0">견과류 프리 인증</Badge>
+                 <Badge variant="outline" className="text-[9px] text-success border-success shrink-0">검증된 시설</Badge>
               </div>
             </div>
           </CardContent>
         </Card>
 
         <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-lg flex items-center gap-2">
-              <FileSearch className="h-5 w-5" /> 스마트 성분 분석
+          <CardHeader className="p-4 pb-2">
+            <CardTitle className="text-base flex items-center gap-2">
+              <FileSearch className="h-4 w-4 text-primary" /> 스마트 성분 분석
             </CardTitle>
-            <CardDescription>{profileName}님의 프로필을 바탕으로 분석된 결과입니다.</CardDescription>
+            <CardDescription className="text-[10px]">{profileName}님의 프로필을 바탕으로 분석된 결과입니다.</CardDescription>
           </CardHeader>
-          <CardContent>
+          <CardContent className="px-4 pb-4">
             {loading ? (
               <div className="space-y-2">
-                {[1, 2, 3, 4, 5].map(i => <Skeleton key={i} className="h-10 w-full" />)}
+                {[1, 2, 3].map(i => <Skeleton key={i} className="h-8 w-full" />)}
               </div>
             ) : (
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-1.5">
                 {data?.parsedIngredients.map((ing, idx) => (
                   <Badge 
                     key={idx} 
                     variant={ing.isAllergen ? "destructive" : "secondary"}
                     className={cn(
-                      "text-sm py-1.5 px-3 cursor-pointer",
+                      "text-xs py-1 px-2.5 cursor-pointer",
                       ing.isAllergen && "animate-pulse"
                     )}
                   >
                     {ing.name}
-                    {ing.isAllergen && <AlertTriangle className="ml-2 h-3 w-3" />}
+                    {ing.isAllergen && <AlertTriangle className="ml-1.5 h-3 w-3" />}
                   </Badge>
                 ))}
               </div>
@@ -178,8 +178,8 @@ export default function ResultPage() {
 
         {isDangerous && !loading && (
           <section>
-            <h3 className="text-lg font-bold mb-3 flex items-center gap-2">
-              <Info className="h-5 w-5 text-primary" /> 과학적 근거
+            <h3 className="text-base font-bold mb-2 flex items-center gap-2">
+              <Info className="h-4 w-4 text-primary" /> 과학적 근거
             </h3>
             <Accordion type="single" collapsible className="w-full space-y-2">
               {data?.parsedIngredients.filter(i => i.isAllergen).map((ing, idx) => (
@@ -189,35 +189,35 @@ export default function ResultPage() {
                   className="bg-white rounded-xl border px-4"
                   onClick={() => fetchRationale(ing.triggeredAllergens[0])}
                 >
-                  <AccordionTrigger className="hover:no-underline py-4">
+                  <AccordionTrigger className="hover:no-underline py-3">
                     <div className="flex flex-col items-start text-left">
-                      <span className="font-bold text-danger text-sm">위험 요소: {ing.name}</span>
-                      <span className="text-xs text-muted-foreground font-medium">왜 위험한가요?</span>
+                      <span className="font-bold text-danger text-xs">위험 요소: {ing.name}</span>
+                      <span className="text-[10px] text-muted-foreground font-medium">왜 위험한가요?</span>
                     </div>
                   </AccordionTrigger>
-                  <AccordionContent className="pb-4">
+                  <AccordionContent className="pb-3">
                     {!rationales[ing.triggeredAllergens[0]] ? (
-                      <div className="space-y-2">
-                        <Skeleton className="h-4 w-full" />
-                        <Skeleton className="h-4 w-3/4" />
+                      <div className="space-y-1.5">
+                        <Skeleton className="h-3 w-full" />
+                        <Skeleton className="h-3 w-3/4" />
                       </div>
                     ) : (
-                      <div className="space-y-4">
-                        <p className="text-sm text-foreground/80 leading-relaxed">
+                      <div className="space-y-3">
+                        <p className="text-[11px] text-foreground/80 leading-relaxed">
                           {rationales[ing.triggeredAllergens[0]].explanation}
                         </p>
-                        <div className="space-y-2">
-                          <p className="text-[10px] uppercase tracking-wider font-bold text-muted-foreground">신뢰할 수 있는 정보원</p>
+                        <div className="space-y-1.5">
+                          <p className="text-[9px] uppercase tracking-wider font-bold text-muted-foreground">신뢰할 수 있는 정보원</p>
                           {rationales[ing.triggeredAllergens[0]].resources.map((res, rIdx) => (
                             <a 
                               key={rIdx} 
                               href={res.url} 
                               target="_blank" 
                               rel="noopener noreferrer"
-                              className="flex items-center justify-between p-3 bg-muted/30 rounded-lg hover:bg-muted/50 transition-colors"
+                              className="flex items-center justify-between p-2.5 bg-muted/30 rounded-lg hover:bg-muted/50 transition-colors"
                             >
-                              <span className="text-xs font-medium text-primary underline">{res.title}</span>
-                              <ExternalLink className="h-3 w-3 text-muted-foreground" />
+                              <span className="text-[10px] font-medium text-primary underline truncate max-w-[80%]">{res.title}</span>
+                              <ExternalLink className="h-2.5 w-2.5 text-muted-foreground shrink-0" />
                             </a>
                           ))}
                         </div>
@@ -230,12 +230,12 @@ export default function ResultPage() {
           </section>
         )}
 
-        <div className="grid grid-cols-2 gap-4">
-          <Button variant="outline" className="h-12 border-primary text-primary font-bold">
-            <MessageSquareWarning className="h-4 w-4 mr-2" /> 오류 신고
+        <div className="grid grid-cols-2 gap-3 pb-4">
+          <Button variant="outline" className="h-11 border-primary text-primary font-bold text-xs">
+            <MessageSquareWarning className="h-3.5 w-3.5 mr-1.5" /> 오류 신고
           </Button>
-          <Button className="h-12 bg-primary text-white font-bold">
-            <Share2 className="h-4 w-4 mr-2" /> 안전 카드 공유
+          <Button className="h-11 bg-primary text-white font-bold text-xs">
+            <Share2 className="h-3.5 w-3.5 mr-1.5" /> 안전 카드 공유
           </Button>
         </div>
       </div>

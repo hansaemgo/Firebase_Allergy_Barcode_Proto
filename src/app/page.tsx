@@ -12,8 +12,8 @@ export default function Home() {
       {/* Header */}
       <header className="p-6 bg-primary text-white flex justify-between items-center rounded-b-[2rem] shadow-lg">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight">SafeBite</h1>
-          <p className="text-sm opacity-80 font-medium">Safe choices for your loved ones.</p>
+          <h1 className="text-xl font-bold tracking-tight">SafeBite</h1>
+          <p className="text-[10px] opacity-80 font-medium">Safe choices for your loved ones.</p>
         </div>
         <div className="h-10 w-10 bg-secondary rounded-full flex items-center justify-center text-primary">
           <ShieldCheck className="h-6 w-6" />
@@ -27,7 +27,7 @@ export default function Home() {
             <CardContent className="p-0 flex flex-col items-center">
               <div className="w-full bg-white/20 p-8 flex flex-col items-center text-primary">
                 <Scan className="h-16 w-16 mb-4" />
-                <h2 className="text-2xl font-bold">즉석 안전 스캔</h2>
+                <h2 className="text-xl font-bold">즉석 안전 스캔</h2>
                 <p className="text-sm font-medium opacity-80">제품 라벨이나 바코드를 스캔하세요</p>
               </div>
               <div className="w-full bg-primary/10 p-4 text-center text-primary font-bold">

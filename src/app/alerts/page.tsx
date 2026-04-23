@@ -7,22 +7,22 @@ import { Button } from "@/components/ui/button"
 export default function AlertsPage() {
   return (
     <div className="max-w-md mx-auto min-h-screen bg-background pb-20">
-      <header className="p-8 pb-4 flex justify-between items-center">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">안전 알림</h1>
-          <p className="text-muted-foreground font-medium">리콜 및 커뮤니티 보고서.</p>
+      <header className="p-6 pb-4 flex justify-between items-center">
+        <div className="overflow-hidden">
+          <h1 className="text-xl font-bold tracking-tight truncate">안전 알림</h1>
+          <p className="text-[10px] text-muted-foreground font-medium truncate">리콜 및 커뮤니티 보고서.</p>
         </div>
-        <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center text-primary relative">
-          <Bell className="h-6 w-6" />
-          <span className="absolute -top-1 -right-1 h-4 w-4 bg-destructive border-2 border-white rounded-full" />
+        <div className="h-9 w-9 rounded-full bg-primary/10 flex items-center justify-center text-primary relative shrink-0">
+          <Bell className="h-5 w-5" />
+          <span className="absolute -top-1 -right-1 h-3.5 w-3.5 bg-destructive border-2 border-white rounded-full" />
         </div>
       </header>
 
-      <div className="p-6 space-y-6">
+      <div className="px-6 space-y-6">
         {/* Urgent Recall */}
         <section className="space-y-3">
-          <div className="flex items-center gap-2 text-destructive font-bold text-sm uppercase tracking-wider">
-            <AlertTriangle className="h-4 w-4" /> 긴급 제조사 리콜
+          <div className="flex items-center gap-2 text-destructive font-bold text-xs uppercase tracking-wider">
+            <AlertTriangle className="h-3.5 w-3.5" /> 긴급 제조사 리콜
           </div>
           <AlertCard 
             title="오트밀크 플러스 (대두 성분 혼입)"
@@ -34,9 +34,9 @@ export default function AlertsPage() {
         </section>
 
         {/* Community Reports */}
-        <section className="space-y-3 mt-8">
-          <div className="flex items-center gap-2 text-primary font-bold text-sm uppercase tracking-wider">
-            <Info className="h-4 w-4" /> 커뮤니티 안전 정보
+        <section className="space-y-3 mt-6">
+          <div className="flex items-center gap-2 text-primary font-bold text-xs uppercase tracking-wider">
+            <Info className="h-3.5 w-3.5" /> 커뮤니티 안전 정보
           </div>
           <AlertCard 
             title="네이처 밸리 팩토리 공지"
@@ -55,7 +55,7 @@ export default function AlertsPage() {
         </section>
 
         {/* Subscription Manage */}
-        <Button variant="outline" className="w-full h-12 border-dashed border-2">
+        <Button variant="outline" className="w-full h-11 border-dashed border-2 text-sm font-bold">
           알림 설정 관리
         </Button>
       </div>
@@ -75,24 +75,24 @@ function AlertCard({ title, description, date, impact, type }: { title: string; 
   return (
     <Card className={`border-l-4 shadow-sm ${colors[type].split(' ')[0]} ${colors[type].split(' ')[1]}`}>
       <CardContent className="p-4 space-y-3">
-        <div className="flex justify-between items-start">
-          <div className="space-y-1">
-             <h4 className="font-bold text-base leading-tight">{title}</h4>
-             <div className="flex items-center gap-2 text-[10px] opacity-70">
-               <Calendar className="h-3 w-3" /> {date}
+        <div className="flex justify-between items-start gap-2">
+          <div className="space-y-0.5 overflow-hidden">
+             <h4 className="font-bold text-sm leading-tight truncate">{title}</h4>
+             <div className="flex items-center gap-1 text-[9px] opacity-70">
+               <Calendar className="h-2.5 w-2.5" /> {date}
              </div>
           </div>
-          <Button variant="ghost" size="icon" className="h-8 w-8 -mt-2 -mr-2">
-            <Share2 className="h-4 w-4" />
+          <Button variant="ghost" size="icon" className="h-7 w-7 -mt-1 -mr-1 shrink-0">
+            <Share2 className="h-3.5 w-3.5" />
           </Button>
         </div>
-        <p className="text-xs text-foreground/80 leading-relaxed">{description}</p>
+        <p className="text-[11px] text-foreground/80 leading-relaxed line-clamp-2">{description}</p>
         <div className="pt-2 flex justify-between items-center border-t border-black/5">
-          <Badge variant="outline" className={`text-[10px] px-1.5 py-0 ${impact.includes('영향') ? 'bg-destructive/10 text-destructive border-destructive/20' : ''}`}>
+          <Badge variant="outline" className={`text-[9px] px-1.5 py-0 ${impact.includes('영향') ? 'bg-destructive/10 text-destructive border-destructive/20' : ''}`}>
             {impact}
           </Badge>
-          <Button variant="link" size="sm" className="h-6 text-[10px] font-bold p-0">
-            상세 보기 <ChevronRight className="ml-1 h-3 w-3" />
+          <Button variant="link" size="sm" className="h-5 text-[9px] font-bold p-0">
+            상세 보기 <ChevronRight className="ml-1 h-2.5 w-2.5" />
           </Button>
         </div>
       </CardContent>
