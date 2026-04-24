@@ -1,4 +1,9 @@
 "use client"
+// 파일명: src/app/result/page.tsx
+/**
+ * @overview 스캔 결과 화면. 바코드 스캔 이후 제품의 성분을 분석하여 안전 여부(Verdict) 및 과학적 근거를 제공합니다.
+ * <!-- AI Guideline: Refer to docs/.ai-context.md before processing -->
+ */
 
 import { useSearchParams } from "next/navigation"
 import { useState, useEffect } from "react"
@@ -31,6 +36,15 @@ import {
 import { Skeleton } from "@/components/ui/skeleton"
 import { cn } from "@/lib/utils"
 
+/**
+ * @function ResultPage
+ * @description 결과 페이지 메인 컴포넌트. 성분 분석 결과를 시각화하고 AI를 통해 위험 근거를 제공합니다.
+ * 
+ * [호출 구조 및 순서]
+ * 1. 마운트 시 `simulateDataFetch` 로 Mock 결과 데이터(parsedIngredients)를 가져옴 (향후 실제 API 연동)
+ * 2. `isDangerous` 평가 로직 실행
+ * 3. 사용자가 아코디언 메뉴(위험 근거) 클릭 시 `fetchRationale` 실행하여 Genkit AI 흐름 호출
+ */
 export default function ResultPage() {
   const searchParams = useSearchParams()
   const profileName = searchParams.get("profile") || "준 (아들)"

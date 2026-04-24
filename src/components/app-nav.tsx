@@ -1,4 +1,9 @@
 "use client"
+// 파일명: src/components/app-nav.tsx
+/**
+ * @overview 모바일 환경을 위한 하단 전역 내비게이션 바 컴포넌트입니다.
+ * <!-- AI Guideline: Refer to docs/.ai-context.md before processing -->
+ */
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
@@ -13,6 +18,10 @@ const navItems = [
   { label: "관리자", icon: ShieldAlert, href: "/admin" },
 ]
 
+/**
+ * @function AppNav
+ * @description 현재 경로를 감지하여 활성화 상태를 표시하는 하단 내비게이션.
+ */
 export function AppNav() {
   const pathname = usePathname()
 

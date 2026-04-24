@@ -1,4 +1,9 @@
 "use client"
+// 파일명: src/app/profiles/page.tsx
+/**
+ * @overview 알레르기 프로필 관리 화면. 사용자별 알레르기 유발 물질 목록 및 민감도를 설정/관리합니다.
+ * <!-- AI Guideline: Refer to docs/.ai-context.md before processing -->
+ */
 
 import { useState } from "react"
 import { AppNav } from "@/components/app-nav"
@@ -20,6 +25,10 @@ import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 
+/**
+ * @function ProfilesPage
+ * @description 프로필 목록 페이지 메인 컴포넌트. 등록된 프로필 목록과 전역 스캔 모드 설정을 렌더링합니다.
+ */
 export default function ProfilesPage() {
   const [profiles, setProfiles] = useState([
     { id: 1, name: "준 (아들)", allergens: ["땅콩", "우유"], severity: "심각", color: "bg-primary" },
@@ -97,6 +106,11 @@ export default function ProfilesPage() {
   )
 }
 
+/**
+ * @function ProfileWizard
+ * @description 새로운 알레르기 프로필을 생성하기 위한 3단계 다이얼로그(모달) 마법사 컴포넌트입니다.
+ * @param {function} onAdd - 프로필 생성이 완료되었을 때 호출되는 콜백 함수
+ */
 function ProfileWizard({ onAdd }: { onAdd: (profile: any) => void }) {
   const [step, setStep] = useState(1)
   const [formData, setFormData] = useState({

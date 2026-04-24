@@ -1,4 +1,9 @@
 "use client"
+// 파일명: src/app/scan/page.tsx
+/**
+ * @overview 바코드 스캔 화면. 카메라 뷰파인더 UI를 제공하고 실시간 스캔 애니메이션을 렌더링합니다.
+ * <!-- AI Guideline: Refer to docs/.ai-context.md before processing -->
+ */
 
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
@@ -13,6 +18,15 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { cn } from "@/lib/utils"
 
+/**
+ * @function ScanPage
+ * @description 스캔 페이지 메인 컴포넌트. 사용자 프로필 선택 및 스캔 시뮬레이션을 처리합니다.
+ * 
+ * [호출 구조 및 순서]
+ * 1. 카메라 UI 렌더링 및 프로필 드롭다운 메뉴 활성화
+ * 2. 하단 셔터 버튼(`handleScan`) 클릭 시 `isScanning` 상태 변경
+ * 3. 2초 후 선택된 프로필 데이터를 URL 파라미터로 넘기며 `/result` 페이지로 라우팅
+ */
 export default function ScanPage() {
   const router = useRouter()
   const [selectedProfile, setSelectedProfile] = useState("준 (아들)")

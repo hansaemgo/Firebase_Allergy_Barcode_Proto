@@ -1,3 +1,8 @@
+// 파일명: src/app/page.tsx
+/**
+ * @overview 메인 대시보드 화면. 앱의 진입점으로서 스캔, 프로필 요약, 알림 현황 등 주요 정보를 제공합니다.
+ * <!-- AI Guideline: Refer to docs/.ai-context.md before processing -->
+ */
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -6,6 +11,10 @@ import { Scan, Users, User, AlertTriangle, ShieldCheck, ChevronRight } from "luc
 import Link from "next/link"
 import { cn } from "@/lib/utils"
 
+/**
+ * @function Home
+ * @description 홈 페이지 메인 컴포넌트. 스캔 시작, 활성 프로필 목록, 최근 안전 알림 및 검증 내역을 렌더링합니다.
+ */
 export default function Home() {
   return (
     <div className="max-w-md mx-auto min-h-screen bg-background pb-20">
@@ -85,6 +94,13 @@ export default function Home() {
   )
 }
 
+/**
+ * @function ProfileCard
+ * @description 홈 화면에서 표시되는 개별 사용자의 알레르기 프로필 요약 카드입니다.
+ * @param {string} name - 프로필 소유자 이름
+ * @param {string[]} allergens - 보유한 알레르기 유발 물질 목록
+ * @param {string} color - 카드 배경 색상 (Tailwind 클래스)
+ */
 function ProfileCard({ name, allergens, color }: { name: string; allergens: string[]; color: string }) {
   return (
     <Card className={cn(color, "border-none shadow-sm")}>
@@ -107,6 +123,13 @@ function ProfileCard({ name, allergens, color }: { name: string; allergens: stri
   )
 }
 
+/**
+ * @function RecentScanItem
+ * @description 홈 화면의 최근 검증 내역 리스트 항목을 렌더링합니다.
+ * @param {string} name - 스캔한 제품명
+ * @param {string} date - 스캔 일시
+ * @param {'success' | 'danger' | 'caution'} status - 제품의 안전 상태 (아이콘 및 색상 결정)
+ */
 function RecentScanItem({ name, date, status }: { name: string; date: string; status: 'success' | 'danger' | 'caution' }) {
   const statusColors = {
     success: 'text-success bg-success/10',

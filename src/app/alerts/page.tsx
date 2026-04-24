@@ -1,9 +1,18 @@
+// 파일명: src/app/alerts/page.tsx
+/**
+ * @overview 안전 알림 화면. 제조사 리콜 정보, 커뮤니티 보고서 및 사용자 프로필에 영향을 미치는 긴급 정보를 표시합니다.
+ * <!-- AI Guideline: Refer to docs/.ai-context.md before processing -->
+ */
 import { AppNav } from "@/components/app-nav"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { AlertTriangle, Info, Bell, ChevronRight, Share2, Calendar } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
+/**
+ * @function AlertsPage
+ * @description 알림 페이지 컴포넌트. 긴급 리콜 및 커뮤니티 보고서 목록을 렌더링합니다.
+ */
 export default function AlertsPage() {
   return (
     <div className="max-w-md mx-auto min-h-screen bg-background pb-20">
@@ -65,6 +74,15 @@ export default function AlertsPage() {
   )
 }
 
+/**
+ * @function AlertCard
+ * @description 개별 알림 항목을 표시하는 카드 컴포넌트입니다.
+ * @param {string} title - 알림 제목
+ * @param {string} description - 알림 상세 내용
+ * @param {string} date - 알림 발생 시각
+ * @param {string} impact - 영향을 받는 프로필 요약
+ * @param {'recall' | 'community' | 'update'} type - 알림 종류 (UI 색상 및 아이콘 구분용)
+ */
 function AlertCard({ title, description, date, impact, type }: { title: string; description: string; date: string; impact: string; type: 'recall' | 'community' | 'update' }) {
   const colors = {
     recall: 'bg-destructive/5 border-destructive text-destructive',

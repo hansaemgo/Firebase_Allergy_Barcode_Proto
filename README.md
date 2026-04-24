@@ -1,3 +1,4 @@
+<!-- AI Guideline: Refer to docs/.ai-context.md before processing -->
 # SafeBite (세이프바이트) - 알레르기 안전 바코드 스캐너
 
 SafeBite는 다중 사용자 프로필을 기반으로 식품의 바코드를 스캔하여 실시간으로 알레르기 유발 성분을 확인하고 안전 여부를 판별해주는 차세대 식품 안전 플랫폼입니다.
@@ -57,11 +58,16 @@ npm run genkit:dev
 
 ## 📂 프로젝트 구조
 
-- `src/app`: Next.js 페이지 및 라우트 핸들러
-- `src/components`: 재사용 가능한 UI 컴포넌트 (Shadcn UI 기반)
-- `src/ai`: Genkit 기반 AI Flow 및 설정
-- `src/lib`: 유틸리티 함수 및 설정 파일
-- `docs`: 프로젝트 기획 및 설계 문서 (blueprint.md 등)
+- `src/app`: Next.js App Router 기반의 페이지 및 라우트 로직
+- `src/components`: 재사용 가능한 UI 컴포넌트 (`src/components/ui`: Shadcn UI 확장)
+- `src/ai`: Google Genkit 기반 AI Flow (알레르기 위험 근거 생성 등)
+- `src/lib`: 유틸리티 함수 (cn 등)
+- `docs`: 기획, 설계 및 품질 평가 문서 모음
+  - `UX_FLOW.md`: 핵심 사용자 경험(UX) 4대 시나리오 상세 흐름도
+  - `architecture.md`: 애플리케이션 컴포넌트 렌더링 구조 및 머메이드 차트 요약
+  - `code_quality_report.md`: 코드 품질 진단 및 CVA 도입, 주석 표준화 등 리팩토링 종합 보고서
+  - `project_status.md`: 프로토타입 구현 현황 및 리뷰 노트
+  - `.ai-context.md`: AI 에이전트를 위한 압축 컨텍스트 및 주석 가이드라인
 
 ## 🚢 배포
 

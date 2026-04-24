@@ -1,6 +1,8 @@
 'use server';
+// 파일명: src/ai/flows/allergen-rationale-flow.ts
 /**
- * @fileOverview Provides evidence-backed explanations for flagged allergens in products.
+ * @overview 특정 제품 성분이 알레르기 유발 물질로 판별된 경우, 그에 대한 과학적 근거를 Genkit(LLM)을 통해 생성합니다.
+ * <!-- AI Guideline: Refer to docs/.ai-context.md before processing -->
  *
  * - getAllergenRationale - A function that fetches the rationale and resources for a given allergen.
  * - AllergenRationaleInput - The input type for the getAllergenRationale function.
@@ -35,6 +37,15 @@ const AllergenRationaleOutputSchema = z.object({
 });
 export type AllergenRationaleOutput = z.infer<typeof AllergenRationaleOutputSchema>;
 
+/**
+ * @function getAllergenRationale
+ * @description 외부에서 호출 가능한 서버 액션. Genkit Flow를 감싸서 실행합니다.
+ * 
+ * [호출 구조 및 순서]
+ * 1. 클라이언트(Result Page)에서 getAllergenRationale 호출
+ * 2. 내부적으로 allergenRationaleFlow 실행
+ * 3. Genkit 프롬프트(allergenRationalePrompt) 처리 및 반환
+ */
 export async function getAllergenRationale(
   input: AllergenRationaleInput
 ): Promise<AllergenRationaleOutput> {
