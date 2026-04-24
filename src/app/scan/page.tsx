@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { AppNav } from "@/components/app-nav"
 import { X, Camera, Flashlight, ChevronDown, Check, User } from "lucide-react"
@@ -20,7 +20,6 @@ export default function ScanPage() {
 
   const handleScan = () => {
     setIsScanning(true)
-    // 2초 후 성공적인 스캔 시뮬레이션
     setTimeout(() => {
       router.push("/result?profile=" + encodeURIComponent(selectedProfile))
     }, 2000)
@@ -67,17 +66,13 @@ export default function ScanPage() {
 
       {/* Camera Simulator */}
       <div className="flex-1 relative flex items-center justify-center">
-        {/* Mock Camera Background */}
         <div 
           className="absolute inset-0 bg-cover bg-center grayscale opacity-60"
           style={{ backgroundImage: `url(https://picsum.photos/seed/scan-bg/800/1200)` }}
           data-ai-hint="grocery products"
         />
         
-        {/* Viewfinder Overlay */}
         <div className="relative w-64 h-64 border-2 border-white/50 rounded-3xl overflow-hidden scanner-viewfinder z-10 flex items-center justify-center">
-          <div className="absolute inset-0 border-8 border-transparent" />
-          {/* Scanning Animation Corners */}
           <div className="absolute top-0 left-0 w-8 h-8 border-t-4 border-l-4 border-secondary" />
           <div className="absolute top-0 right-0 w-8 h-8 border-t-4 border-r-4 border-secondary" />
           <div className="absolute bottom-0 left-0 w-8 h-8 border-b-4 border-l-4 border-secondary" />
@@ -92,7 +87,7 @@ export default function ScanPage() {
       </div>
 
       {/* Bottom Interface */}
-      <div className="bg-black/80 backdrop-blur-md p-8 pb-28 pt-4 rounded-t-[3rem] z-20">
+      <div className="bg-black/80 backdrop-blur-md p-8 pb-32 pt-4 rounded-t-[3rem] z-20">
         <div className="flex flex-col items-center space-y-6">
           <p className="text-white/60 text-[11px] font-medium text-center">
             바코드나 성분표를 프레임 안에 맞춰주세요
@@ -115,7 +110,7 @@ export default function ScanPage() {
                 isScanning ? "scale-75 opacity-50" : "scale-100"
               )} />
             </button>
-            <div className="h-12 w-12" /> {/* Spacer */}
+            <div className="h-12 w-12" />
           </div>
         </div>
       </div>

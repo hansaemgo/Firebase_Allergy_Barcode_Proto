@@ -12,7 +12,6 @@ import {
   Share2, 
   ChevronLeft, 
   Info, 
-  CheckCircle2,
   FileSearch,
   MessageSquareWarning,
   ExternalLink
@@ -26,10 +25,6 @@ import {
   AccordionTrigger 
 } from "@/components/ui/accordion"
 import { 
-  ingredientParsing, 
-  IngredientParsingOutput 
-} from "@/ai/flows/ingredient-parsing-flow"
-import { 
   getAllergenRationale, 
   AllergenRationaleOutput 
 } from "@/ai/flows/allergen-rationale-flow"
@@ -41,44 +36,39 @@ export default function ResultPage() {
   const profileName = searchParams.get("profile") || "준 (아들)"
   
   const [loading, setLoading] = useState(true)
-  const [data, setData] = useState<IngredientParsingOutput | null>(null)
+  const [data, setData] = useState<any>(null)
   const [rationales, setRationales] = useState<Record<string, AllergenRationaleOutput>>({})
 
   useEffect(() => {
     const simulateDataFetch = async () => {
-      const mockResult: IngredientParsingOutput = {
+      const mockResult = {
         parsedIngredients: [
           { name: "밀가루", isAllergen: false, triggeredAllergens: [] },
           { name: "설탕", isAllergen: false, triggeredAllergens: [] },
           { name: "우유 고형분", isAllergen: true, triggeredAllergens: ["우유"] },
           { name: "식물성 유지", isAllergen: false, triggeredAllergens: [] },
           { name: "땅콩 페이스트", isAllergen: true, triggeredAllergens: ["땅콩"] },
-          { name: "천연 향료", isAllergen: false, triggeredAllergens: [] },
         ]
       }
-      
       setTimeout(() => {
         setData(mockResult)
         setLoading(false)
       }, 1500)
     }
-
     simulateDataFetch()
   }, [])
 
   const fetchRationale = async (allergen: string) => {
     if (rationales[allergen]) return
-    
     const rationale = await getAllergenRationale({
       allergenName: allergen,
       userAllergyProfile: `${profileName}님은 ${allergen}에 심한 알레르기가 있습니다.`
     })
-    
     setRationales(prev => ({ ...prev, [allergen]: rationale }))
   }
 
-  const isDangerous = data?.parsedIngredients.some(i => i.isAllergen) ?? false
-  const triggeredAllergensCount = data?.parsedIngredients.filter(i => i.isAllergen).length ?? 0
+  const isDangerous = data?.parsedIngredients.some((i: any) => i.isAllergen) ?? false
+  const triggeredAllergensCount = data?.parsedIngredients.filter((i: any) => i.isAllergen).length ?? 0
 
   return (
     <div className="bg-background min-h-screen pb-24">
@@ -105,11 +95,7 @@ export default function ResultPage() {
         ) : (
           <>
             <div className="bg-white/20 p-3 rounded-full mb-4">
-              {isDangerous ? (
-                <XCircle className="h-12 w-12" />
-              ) : (
-                <ShieldCheck className="h-12 w-12" />
-              )}
+              {isDangerous ? <XCircle className="h-12 w-12" /> : <ShieldCheck className="h-12 w-12" />}
             </div>
             <h1 className="text-xl font-bold mb-1">
               {isDangerous ? "위험 감지!" : "안전 확인됨"}
@@ -127,18 +113,14 @@ export default function ResultPage() {
         <Card className="shadow-lg border-none">
           <CardContent className="p-4 flex gap-4">
             <div className="h-16 w-16 bg-muted rounded-lg overflow-hidden shrink-0 border border-border">
-               <img 
-                 src="https://picsum.photos/seed/product/200/200" 
-                 alt="제품 이미지" 
-                 className="h-full w-full object-cover"
-               />
+               <img src="https://picsum.photos/seed/product/200/200" alt="제품" className="h-full w-full object-cover" />
             </div>
             <div className="flex flex-col justify-center overflow-hidden">
               <h2 className="text-sm font-bold truncate">네이처 밸리 그래놀라</h2>
               <p className="text-[10px] text-muted-foreground truncate font-medium">오츠 앤 허니 버라이어티 팩</p>
-              <div className="flex gap-1.5 mt-1.5 overflow-x-auto no-scrollbar">
-                 <Badge variant="outline" className="text-[9px] text-primary border-primary shrink-0 font-bold">견과류 프리 인증</Badge>
-                 <Badge variant="outline" className="text-[9px] text-success border-success shrink-0 font-bold">검증된 시설</Badge>
+              <div className="flex gap-1.5 mt-1.5">
+                 <Badge variant="outline" className="text-[9px] text-primary border-primary font-bold">견과류 프리 인증</Badge>
+                 <Badge variant="outline" className="text-[9px] text-success border-success font-bold">검증됨</Badge>
               </div>
             </div>
           </CardContent>
@@ -158,14 +140,11 @@ export default function ResultPage() {
               </div>
             ) : (
               <div className="flex flex-wrap gap-1.5">
-                {data?.parsedIngredients.map((ing, idx) => (
+                {data?.parsedIngredients.map((ing: any, idx: number) => (
                   <Badge 
                     key={idx} 
                     variant={ing.isAllergen ? "destructive" : "secondary"}
-                    className={cn(
-                      "text-xs py-1 px-2.5 cursor-pointer font-bold",
-                      ing.isAllergen && "animate-pulse"
-                    )}
+                    className={cn("text-xs py-1 px-2.5 font-bold", ing.isAllergen && "animate-pulse")}
                   >
                     {ing.name}
                     {ing.isAllergen && <AlertTriangle className="ml-1.5 h-3 w-3" />}
@@ -182,7 +161,7 @@ export default function ResultPage() {
               <Info className="h-4 w-4 text-primary" /> 과학적 근거
             </h3>
             <Accordion type="single" collapsible className="w-full space-y-2">
-              {data?.parsedIngredients.filter(i => i.isAllergen).map((ing, idx) => (
+              {data?.parsedIngredients.filter((i: any) => i.isAllergen).map((ing: any, idx: number) => (
                 <AccordionItem 
                   key={idx} 
                   value={`item-${idx}`} 
@@ -197,27 +176,17 @@ export default function ResultPage() {
                   </AccordionTrigger>
                   <AccordionContent className="pb-3">
                     {!rationales[ing.triggeredAllergens[0]] ? (
-                      <div className="space-y-1.5">
-                        <Skeleton className="h-3 w-full" />
-                        <Skeleton className="h-3 w-3/4" />
-                      </div>
+                      <Skeleton className="h-10 w-full" />
                     ) : (
                       <div className="space-y-3">
                         <p className="text-[11px] text-foreground/80 leading-relaxed font-medium">
                           {rationales[ing.triggeredAllergens[0]].explanation}
                         </p>
                         <div className="space-y-1.5">
-                          <p className="text-[9px] uppercase tracking-wider font-bold text-muted-foreground">신뢰할 수 있는 정보원</p>
                           {rationales[ing.triggeredAllergens[0]].resources.map((res, rIdx) => (
-                            <a 
-                              key={rIdx} 
-                              href={res.url} 
-                              target="_blank" 
-                              rel="noopener noreferrer"
-                              className="flex items-center justify-between p-2.5 bg-muted/30 rounded-lg hover:bg-muted/50 transition-colors"
-                            >
+                            <a key={rIdx} href={res.url} target="_blank" className="flex items-center justify-between p-2.5 bg-muted/30 rounded-lg">
                               <span className="text-[10px] font-bold text-primary underline truncate max-w-[80%]">{res.title}</span>
-                              <ExternalLink className="h-2.5 w-2.5 text-muted-foreground shrink-0" />
+                              <ExternalLink className="h-2.5 w-2.5 text-muted-foreground" />
                             </a>
                           ))}
                         </div>
@@ -229,17 +198,7 @@ export default function ResultPage() {
             </Accordion>
           </section>
         )}
-
-        <div className="grid grid-cols-2 gap-3 pb-4 mt-2">
-          <Button variant="outline" className="h-11 border-primary text-primary font-bold text-xs rounded-xl shadow-sm">
-            <MessageSquareWarning className="h-3.5 w-3.5 mr-1.5" /> 오류 신고
-          </Button>
-          <Button className="h-11 bg-primary text-white font-bold text-xs rounded-xl shadow-md">
-            <Share2 className="h-3.5 w-3.5 mr-1.5" /> 결과 공유
-          </Button>
-        </div>
       </div>
-
       <AppNav />
     </div>
   )

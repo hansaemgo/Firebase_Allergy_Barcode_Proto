@@ -1,5 +1,5 @@
 import { AppNav } from "@/components/app-nav"
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { 
@@ -9,9 +9,7 @@ import {
   Clock, 
   Search, 
   Database,
-  BarChart3,
-  MessageSquareWarning,
-  ExternalLink
+  BarChart3
 } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { cn } from "@/lib/utils"
@@ -19,13 +17,13 @@ import { cn } from "@/lib/utils"
 export default function AdminPage() {
   return (
     <div className="max-w-4xl mx-auto min-h-screen bg-background pb-20">
-      <header className="p-6 pb-4 space-y-4">
+      <header className="p-6 pb-4 space-y-3">
         <div className="flex items-center justify-between gap-4">
           <div className="flex items-center gap-2 overflow-hidden">
             <ShieldAlert className="h-6 w-6 text-primary shrink-0" />
             <div className="min-w-0">
               <h1 className="text-xl font-bold truncate leading-tight">Admin Command Center</h1>
-              <p className="text-[10px] text-muted-foreground truncate font-medium">Manage data integrity and safety reports.</p>
+              <p className="text-[10px] text-muted-foreground truncate font-medium uppercase tracking-wider">Manage data integrity and safety reports.</p>
             </div>
           </div>
           <Button variant="outline" size="sm" className="shrink-0 h-8 text-xs px-2 font-bold">내보내기</Button>
