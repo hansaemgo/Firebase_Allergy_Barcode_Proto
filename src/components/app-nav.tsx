@@ -11,7 +11,7 @@ import { Home, Scan, Bell, User, ShieldAlert } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 const navItems = [
-  { label: "홈", icon: Home, href: "/" },
+  { label: "홈", icon: Home, href: "/home" },
   { label: "스캔", icon: Scan, href: "/scan" },
   { label: "알림", icon: Bell, href: "/alerts" },
   { label: "프로필", icon: User, href: "/profiles" },
