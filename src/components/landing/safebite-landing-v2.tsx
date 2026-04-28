@@ -1,6 +1,6 @@
 // 파일명: src/components/landing/safebite-landing-v2.tsx
 /**
- * @overview SafeBite 마케팅 랜딩 V2 (다크·결과 우선 톤). 루트 `/` 기본 노출. 클래식은 `/?v=1`.
+ * @overview SafeBite 마케팅 랜딩 V2 (다크·결과 우선). `/?v=2`. 기본 루트는 V3.
  * <!-- AI Guideline: Refer to docs/.ai-context.md before processing -->
  */
 import type { LucideIcon } from "lucide-react"
@@ -43,11 +43,14 @@ export function SafebiteLandingV2() {
             SafeBite<span className="text-amber-400">.</span>
           </Link>
           <div className="flex items-center gap-2 sm:gap-4">
+            <Link href="/" className="text-[11px] sm:text-xs text-slate-400 hover:text-white transition-colors">
+              V3 최신
+            </Link>
             <Link
               href="/?v=1"
               className="text-[11px] sm:text-xs text-slate-400 hover:text-white transition-colors"
             >
-              V1 클래식
+              V1
             </Link>
             <Button asChild size="sm" className={ctaV2("text-xs px-3")}>
               <Link href={CTA_HREF}>{CTA_LABEL}</Link>
@@ -189,9 +192,13 @@ export function SafebiteLandingV2() {
       </section>
 
       <footer className="border-t border-white/10 px-4 py-8 text-center text-[11px] text-slate-600 max-w-3xl mx-auto">
-        SafeBite — 랜딩 V2. 비교 보기:&nbsp;
+        SafeBite — 랜딩 V2.&nbsp;
+        <Link href="/" className="text-amber-500/90 hover:text-amber-400 underline underline-offset-2">
+          V3 최신
+        </Link>
+        {" · "}
         <Link href="/?v=1" className="text-amber-500/90 hover:text-amber-400 underline underline-offset-2">
-          라이트 톤 V1
+          V1
         </Link>
         .
       </footer>

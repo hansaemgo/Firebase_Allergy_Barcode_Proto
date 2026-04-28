@@ -54,11 +54,17 @@ export function SafebiteLandingV1() {
           </Link>
             <nav className="flex items-center gap-2 sm:gap-3">
             <Link
+              href="/?v=2"
+              className="text-[11px] sm:text-xs text-muted-foreground hover:text-foreground transition-colors hidden sm:inline"
+            >
+              V2
+            </Link>
+            <Link
               href="/"
               className="text-[11px] sm:text-xs text-muted-foreground hover:text-foreground transition-colors hidden sm:inline"
-              title="기본(신규) 랜딩"
+              title="기본 V3"
             >
-              V2 스타일
+              V3
             </Link>
             <Button asChild size="sm" className={primaryCtaClasses("text-xs px-3 sm:text-sm sm:px-4")}>
               <Link href={CTA_HREF}>{CTA_LABEL}</Link>

@@ -1,11 +1,12 @@
 // 파일명: src/app/page.tsx
 /**
- * @overview 루트 마케팅 랜딩. 기본은 V2 다크, `?v=1` 시 V1 라이트. 앱은 `/home` CTA로 진입.
+ * @overview 루트 마케팅 랜딩. 기본 V3(`/?v=3` 생략 시 동일). `?v=1` V1, `?v=2` V2. 앱은 `/home`.
  * <!-- AI Guideline: Refer to docs/.ai-context.md before processing -->
  */
 import type { Metadata } from "next"
 import { SafebiteLandingV1 } from "@/components/landing/safebite-landing-v1"
 import { SafebiteLandingV2 } from "@/components/landing/safebite-landing-v2"
+import { SafebiteLandingV3 } from "@/components/landing/safebite-landing-v3"
 
 export const metadata: Metadata = {
   title: "SafeBite | 바코드로 알레르기 안전을 검증하세요",
@@ -19,12 +20,11 @@ type PageProps = {
 
 /**
  * @function MarketingRootPage
- * @description 기본 랜딩 V2. `v=1`일 때만 V1 렌더링.
+ * @description `v` 쿼리로 V1·V2 선택, 그 외 기본은 V3.
  */
 export default async function MarketingRootPage(props: PageProps) {
   const sp = await props.searchParams
-  if (sp?.v === "1") {
-    return <SafebiteLandingV1 />
-  }
-  return <SafebiteLandingV2 />
+  if (sp?.v === "1") return <SafebiteLandingV1 />
+  if (sp?.v === "2") return <SafebiteLandingV2 />
+  return <SafebiteLandingV3 />
 }
