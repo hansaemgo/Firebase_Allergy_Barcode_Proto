@@ -56,10 +56,24 @@ npm run dev
 npm run genkit:dev
 ```
 
+## 📣 마케팅 랜딩 (Hook → 서비스)
+
+방문자는 **먼저** 루트의 마케팅 페이지를 보고, CTA를 통해 **`/home` 앱 본편**(대시보드·스캔 등)으로 들어오는 구조입니다.
+
+| 경로 | 설명 |
+|------|------|
+| `/` | 기본 · **전략 통합 랜딩** (`SafebiteLandingV1`, 라이트 톤) |
+| `/home` | 앱 서비스 화면(기존에 `/`였던 메인 대시보드 등) |
+| `/?v=2` | 대안 변형 · 다크·속도 강조 |
+| `/?v=3` | 대안 변형 · 에디토리얼·웜톤 |
+
+**품질 점검:** 상위 디렉터리 `Allergy_barcode_App/docs/landing-page-checklist-final.md`에 히어로·CTA·신뢰·가치 제안 및 A/B/C 유형 보완 항목에 대한 최종 평가를 정리했습니다.
+
 ## 📂 프로젝트 구조
 
 - `src/app`: Next.js App Router 기반의 페이지 및 라우트 로직
 - `src/components`: 재사용 가능한 UI 컴포넌트 (`src/components/ui`: Shadcn UI 확장)
+  - `src/components/landing/`: 마케팅 랜딩(V1 기본, V2·V3 변형)
 - `src/ai`: Google Genkit 기반 AI Flow (알레르기 위험 근거 생성 등)
 - `src/lib`: 유틸리티 함수 (cn 등)
 - `docs`: 기획, 설계 및 품질 평가 문서 모음
@@ -67,7 +81,12 @@ npm run genkit:dev
   - `architecture.md`: 애플리케이션 컴포넌트 렌더링 구조 및 머메이드 차트 요약
   - `code_quality_report.md`: 코드 품질 진단 및 CVA 도입, 주석 표준화 등 리팩토링 종합 보고서
   - `project_status.md`: 프로토타입 구현 현황 및 리뷰 노트
-  - `.ai-context.md`: AI 에이전트를 위한 압축 컨텍스트 및 주석 가이드라인
+  - `../Allergy_barcode_App/docs/.ai-context.md`: AI 에이전트 컨텍스트(루트 `Allergy_barcode_App` 참고)
+  - `../Allergy_barcode_App/docs/landing-page-checklist-final.md`: **랜딩페이지 체크리스트 최종 평가**
+
+## 📄 상위 레포 문서 (`Allergy_barcode_App/docs/`)
+
+워크스페이스 구조상 AI용 컨텍스트·랜딩 평가는 `Allergy_barcode_App/docs/` 에서 관리합니다. `.ai-context.md`, `landing-page-checklist-final.md` 를 함께 참고하면 됩니다.
 
 ## 🚢 배포
 

@@ -99,14 +99,14 @@ export function SafebiteLandingV1() {
 
       <section className="px-4 sm:px-6 py-10 md:py-12 border-t border-border/60 bg-muted/20" aria-label="제품 데모 영상 자리">
         <div className="max-w-4xl mx-auto text-center space-y-4">
-          <h2 className="text-lg md:text-xl font-bold">스캔 한 번이 어떻게 이어지는지 (Show, Don&apos;t Tell)</h2>
+          <h2 className="text-lg md:text-xl font-bold">30초 안에 보는 스캔 → 판정 흐름</h2>
           <p className="text-sm text-muted-foreground max-w-xl mx-auto">
-            B 유형: 짧은 GIF·자동재생 숏폼을 여기에 두면 전환율이 가장 잘 나옵니다. 지금은 플레이스홀더입니다.
+            숏폼·GIF를 넣으면 첫 스크롤에서 바로 이해할 수 있습니다. 현재는 촬영 전 플레이스홀더입니다.
           </p>
-          <div className="aspect-video max-h-[220px] md:max-h-none rounded-xl border-2 border-dashed border-primary/30 bg-muted/40 flex flex-col items-center justify-center gap-3 mx-auto">
+          <div className="aspect-video max-h-[220px] md:max-h-none rounded-xl border-2 border-dashed border-primary/30 bg-gradient-to-br from-muted/60 to-muted/30 flex flex-col items-center justify-center gap-3 mx-auto shadow-inner ring-1 ring-primary/5">
             <Barcode className="h-14 w-14 text-primary/70" />
             <p className="text-xs text-muted-foreground px-4">
-              스캔 → 판정 카드까지 연결되는 화면 녹화 예정 (16:9 · Autoplay 대비)
+              스캔부터 결과 카드까지 연결 영상 예정 · 16:9 · 무음 자동재생 추천
             </p>
           </div>
         </div>
@@ -195,7 +195,7 @@ export function SafebiteLandingV1() {
         <div className="max-w-6xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-bold text-center mb-3">복잡한 과정 없이: 넣으면, 판정이 나옵니다</h2>
           <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-            입력–출력 관점으로 핵심 경로만 보여 드립니다. (C 유형 보완)
+            안쪽 로직 대신 한 눈에 들어오는 세 단계만 보여 드립니다.
           </p>
           <div className="flex flex-col md:flex-row items-stretch justify-center gap-6 md:gap-4">
             <Card className="md:flex-1 border-dashed bg-card/80">
@@ -242,6 +242,7 @@ export function SafebiteLandingV1() {
               </CardContent>
             </Card>
           </div>
+          <RoiEfficiencyBars />
         </div>
       </section>
 
@@ -250,7 +251,7 @@ export function SafebiteLandingV1() {
           <div>
             <h2 className="text-2xl md:text-3xl font-bold text-center mb-3">처음부터 끝까지, 한 줄기의 워크플로</h2>
             <p className="text-center text-muted-foreground mb-10">
-              검색부터 스캔·검증·알림까지 이어지는 경로입니다. (A 유형 워크플로우 시각화)
+              프로필 저장부터 스캔·검증·리콜 알림까지 끊기지 않게 이어지는 경로입니다.
             </p>
             <WorkflowStrip />
           </div>
@@ -310,7 +311,7 @@ export function SafebiteLandingV1() {
 function HeroVisual() {
   return (
     <div className="relative flex justify-center lg:justify-end">
-      <div className="relative w-full max-w-[320px] aspect-[9/18] rounded-[2.5rem] border-4 border-primary/20 bg-gradient-to-b from-card to-muted shadow-2xl overflow-hidden">
+      <div className="relative w-full max-w-[320px] aspect-[9/18] rounded-[2.5rem] border-4 border-primary/20 ring-2 ring-primary/15 bg-gradient-to-b from-card to-muted shadow-2xl overflow-hidden">
         <div className="absolute top-0 inset-x-0 h-7 bg-primary/10 flex items-center justify-center">
           <div className="h-1.5 w-16 rounded-full bg-muted-foreground/30" />
         </div>
@@ -394,8 +395,42 @@ function WorkflowStrip() {
 }
 
 /**
+ * @function RoiEfficiencyBars
+ * @description Before/After를 보조하는 막대 비교로 체감 시간 절약을 한 번 더 시각화합니다.
+ */
+function RoiEfficiencyBars() {
+  return (
+    <div className="rounded-2xl border border-border bg-card/70 p-6 shadow-sm">
+      <p className="text-center text-sm font-semibold text-foreground mb-1">의사결정까지 걸리는 시간 (예시)</p>
+      <p className="text-center text-[10px] text-muted-foreground mb-6">목표 KPI·내부 가정 포함 — 배포 후 실측으로 교체</p>
+      <div className="space-y-5 max-w-lg mx-auto">
+        <div>
+          <div className="flex justify-between items-baseline text-xs mb-1.5">
+            <span className="text-muted-foreground">성분표만 보고 기억·대조할 때*</span>
+            <span className="tabular-nums font-semibold text-muted-foreground">~6분 추정</span>
+          </div>
+          <div className="h-3 rounded-full bg-muted overflow-hidden">
+            <div className="h-full w-[94%] rounded-full bg-muted-foreground/35" aria-hidden />
+          </div>
+        </div>
+        <div>
+          <div className="flex justify-between items-baseline text-xs mb-1.5">
+            <span className="text-foreground font-medium">SafeBite 목표 값</span>
+            <span className="tabular-nums font-bold text-primary">~30초**</span>
+          </div>
+          <div className="h-3 rounded-full bg-muted overflow-hidden">
+            <div className="h-full w-[22%] rounded-full bg-primary shadow-sm" aria-hidden />
+          </div>
+        </div>
+      </div>
+      <p className="text-[10px] text-muted-foreground text-center mt-4">*가정 시간 **목표 KPI(프로토타입 목표값)</p>
+    </div>
+  )
+}
+
+/**
  * @function SafetyTable
- * @description 일반 대화형 AI와의 비교로 안전·검증 관점을 강조합니다. (A 유형 안전 장치)
+ * @description 일반 대화형 AI와의 비교로 안전·검증 관점을 강조합니다.
  */
 function SafetyTable() {
   const rows = [
@@ -408,7 +443,8 @@ function SafetyTable() {
     <div>
       <h3 className="text-lg md:text-xl font-bold text-center mb-2">일반 챗형 AI와 무엇이 다른가요?</h3>
       <p className="text-center text-sm text-muted-foreground mb-6">
-        추상적인 정확도가 아니라, <strong className="text-foreground">의사결정에 필요한 구조</strong>를 목표로 합니다.
+        환각·추측 응답을 줄이기 위해 스키마·가드레일을 두고,
+        제품 SKU와 가족 프로필이 맞물린 <strong className="text-foreground">의사결정 구조</strong>를 우선합니다.
       </p>
       <div className="rounded-xl border border-border overflow-hidden bg-card shadow-sm overflow-x-auto">
         <Table>
@@ -493,7 +529,7 @@ function OutcomeGallery() {
     <div>
       <h3 className="text-lg md:text-xl font-bold text-center mb-2">결과 요약 예시 (UI 와이어)</h3>
       <p className="text-center text-sm text-muted-foreground mb-6">
-        실제 앱은 `/home` 이후 스캔/결과 화면에서 확인합니다. 아래는 기획용 샘플입니다. (C 유형 결과 갤러리)
+        실제 앱에서 스캔 후 보게 되는 화면 형태 예시입니다. `/home`에서 이어지는 플로우를 상상할 수 있습니다.
       </p>
       <div className="grid sm:grid-cols-3 gap-4">
         {items.map((it) => (
@@ -541,7 +577,7 @@ function DarkSpecRail() {
         ))}
       </div>
       <p className="px-4 pb-3 text-[10px] text-slate-500 font-sans">
-        다크 모드·코드 톤은 B 유형 전환용이며, 실제 수치는 배포 환경 기준으로 교체하세요.
+        개발 리뷰용 스펙 박스입니다. 벤치마크 숫자는 QA·실측 후 갱신하세요.
       </p>
     </div>
   )
