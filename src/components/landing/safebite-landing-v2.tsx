@@ -1,6 +1,6 @@
 // 파일명: src/components/landing/safebite-landing-v2.tsx
 /**
- * @overview SafeBite 마케팅 랜딩 V2 (다크·결과 우선). `/?v=2`. 기본 루트는 V3.
+ * @overview SafeBite 마케팅 랜딩 V2 (다크·결과 우선). `/?v=2`. 기본 `/`는 전략 통합(V1).
  * <!-- AI Guideline: Refer to docs/.ai-context.md before processing -->
  */
 import type { LucideIcon } from "lucide-react"
@@ -44,13 +44,10 @@ export function SafebiteLandingV2() {
           </Link>
           <div className="flex items-center gap-2 sm:gap-4">
             <Link href="/" className="text-[11px] sm:text-xs text-slate-400 hover:text-white transition-colors">
-              V3 최신
+              통합 랜딩
             </Link>
-            <Link
-              href="/?v=1"
-              className="text-[11px] sm:text-xs text-slate-400 hover:text-white transition-colors"
-            >
-              V1
+            <Link href="/?v=3" className="text-[11px] sm:text-xs text-slate-400 hover:text-white transition-colors">
+              V3
             </Link>
             <Button asChild size="sm" className={ctaV2("text-xs px-3")}>
               <Link href={CTA_HREF}>{CTA_LABEL}</Link>
@@ -77,7 +74,7 @@ export function SafebiteLandingV2() {
             </h1>
             <p className="text-slate-400 text-lg leading-relaxed max-w-lg">
               제품 라벨을 읽기 전에 바코드를 찍어요. 개인별 알레르기 프로필·리콜·교차표기까지 한 번에 엮어
-              <strong className="text-slate-200"> 섭여도 되는지 / 주의해야 하는지</strong>만 남겨 드립니다.
+              <strong className="text-slate-200"> 섭취해도 되는지 / 주의해야 하는지</strong>만 남겨 드립니다.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:items-center">
               <Button asChild size="lg" className={ctaV2("w-full sm:w-auto text-base px-8 rounded-full")}>
@@ -194,11 +191,11 @@ export function SafebiteLandingV2() {
       <footer className="border-t border-white/10 px-4 py-8 text-center text-[11px] text-slate-600 max-w-3xl mx-auto">
         SafeBite — 랜딩 V2.&nbsp;
         <Link href="/" className="text-amber-500/90 hover:text-amber-400 underline underline-offset-2">
-          V3 최신
+          통합
         </Link>
         {" · "}
-        <Link href="/?v=1" className="text-amber-500/90 hover:text-amber-400 underline underline-offset-2">
-          V1
+        <Link href="/?v=3" className="text-amber-500/90 hover:text-amber-400 underline underline-offset-2">
+          V3
         </Link>
         .
       </footer>

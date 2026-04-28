@@ -1,6 +1,6 @@
 // 파일명: src/components/landing/safebite-landing-v3.tsx
 /**
- * @overview SafeBite 마케팅 랜딩 V3 (에디토리얼·웜 스톤 톤). 루트 `/` 기본 노출. `/?v=1`=V1, `/?v=2`=V2.
+ * @overview SafeBite 마케팅 랜딩 V3 (에디토리얼·웜 스톤). `/?v=3` 전용. 기본 `/`는 전략 통합(V1).
  * <!-- AI Guideline: Refer to docs/.ai-context.md before processing -->
  */
 import Link from "next/link"
@@ -32,8 +32,8 @@ export function SafebiteLandingV3() {
             SafeBite
           </Link>
           <nav className="flex items-center gap-3 sm:gap-5 text-[11px] sm:text-xs text-stone-500">
-            <Link href="/?v=1" className="hover:text-emerald-900 transition-colors">
-              V1
+            <Link href="/" className="hover:text-emerald-900 transition-colors">
+              통합
             </Link>
             <Link href="/?v=2" className="hover:text-emerald-900 transition-colors">
               V2
@@ -195,8 +195,8 @@ export function SafebiteLandingV3() {
 
       <footer className="border-t border-stone-200 px-5 sm:px-8 py-10 text-center text-[11px] text-stone-500 max-w-2xl mx-auto leading-relaxed">
         SafeBite 랜딩 V3 (에디토리얼). 다른 버전:&nbsp;
-        <Link href="/?v=1" className="text-emerald-800 underline underline-offset-2">
-          V1 라이트
+        <Link href="/" className="text-emerald-800 underline underline-offset-2">
+          통합 랜딩
         </Link>
         {" · "}
         <Link href="/?v=2" className="text-emerald-800 underline underline-offset-2">

@@ -1,6 +1,6 @@
 // 파일명: src/components/landing/safebite-landing-v1.tsx
 /**
- * @overview SafeBite 마케팅 랜딩 V1 (라이트 톤). `/?v=1`로 노출. 서비스 소개·신뢰·CTA로 `/home` 유도.
+ * @overview 랜딩 기본(V1): 고도화 전략 통합 — 히어로·반복 CTA·신뢰·가치 제안 + A·C·B 보완. 루트 `/` 기본. `/?v=3` 에디토리얼.
  * <!-- AI Guideline: Refer to docs/.ai-context.md before processing -->
  */
 import Link from "next/link"
@@ -15,6 +15,7 @@ import {
   Smartphone,
   Sparkles,
   X,
+  Zap,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -46,25 +47,18 @@ function primaryCtaClasses(extra = "") {
  */
 export function SafebiteLandingV1() {
   return (
-    <div className="bg-background text-foreground min-h-screen overflow-x-hidden">
+    <div className="bg-background text-foreground min-h-screen overflow-x-hidden pb-[5.5rem] md:pb-0">
       <header className="sticky top-0 z-40 border-b border-border/60 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-4">
           <Link href="/" className="font-bold text-lg tracking-tight text-primary shrink-0">
             SafeBite
           </Link>
             <nav className="flex items-center gap-2 sm:gap-3">
-            <Link
-              href="/?v=2"
-              className="text-[11px] sm:text-xs text-muted-foreground hover:text-foreground transition-colors hidden sm:inline"
-            >
-              V2
+            <Link href="/?v=2" className="text-[11px] sm:text-xs text-muted-foreground hover:text-foreground transition-colors hidden sm:inline">
+              V2 다크
             </Link>
-            <Link
-              href="/"
-              className="text-[11px] sm:text-xs text-muted-foreground hover:text-foreground transition-colors hidden sm:inline"
-              title="기본 V3"
-            >
-              V3
+            <Link href="/?v=3" className="text-[11px] sm:text-xs text-muted-foreground hover:text-foreground transition-colors hidden sm:inline">
+              V3 에디토리얼
             </Link>
             <Button asChild size="sm" className={primaryCtaClasses("text-xs px-3 sm:text-sm sm:px-4")}>
               <Link href={CTA_HREF}>{CTA_LABEL}</Link>
@@ -100,6 +94,21 @@ export function SafebiteLandingV1() {
             </div>
           </div>
           <HeroVisual />
+        </div>
+      </section>
+
+      <section className="px-4 sm:px-6 py-10 md:py-12 border-t border-border/60 bg-muted/20" aria-label="제품 데모 영상 자리">
+        <div className="max-w-4xl mx-auto text-center space-y-4">
+          <h2 className="text-lg md:text-xl font-bold">스캔 한 번이 어떻게 이어지는지 (Show, Don&apos;t Tell)</h2>
+          <p className="text-sm text-muted-foreground max-w-xl mx-auto">
+            B 유형: 짧은 GIF·자동재생 숏폼을 여기에 두면 전환율이 가장 잘 나옵니다. 지금은 플레이스홀더입니다.
+          </p>
+          <div className="aspect-video max-h-[220px] md:max-h-none rounded-xl border-2 border-dashed border-primary/30 bg-muted/40 flex flex-col items-center justify-center gap-3 mx-auto">
+            <Barcode className="h-14 w-14 text-primary/70" />
+            <p className="text-xs text-muted-foreground px-4">
+              스캔 → 판정 카드까지 연결되는 화면 녹화 예정 (16:9 · Autoplay 대비)
+            </p>
+          </div>
         </div>
       </section>
 
@@ -284,6 +293,12 @@ export function SafebiteLandingV1() {
           </Button>
         </div>
       </footer>
+
+      <div className="fixed bottom-0 left-0 right-0 z-50 p-4 pb-[max(1rem,env(safe-area-inset-bottom))] bg-background/95 border-t border-border backdrop-blur md:hidden shadow-[0_-8px_30px_-12px_rgba(0,0,0,0.12)]">
+        <Button asChild size="lg" className={primaryCtaClasses("w-full rounded-xl py-6 text-base shadow-md")}>
+          <Link href={CTA_HREF}>{CTA_LABEL}</Link>
+        </Button>
+      </div>
     </div>
   )
 }
@@ -458,6 +473,7 @@ function ExpertProof() {
         </Card>
       </div>
       <HardFactsMini />
+      <DarkSpecRail />
       <OutcomeGallery />
     </div>
   )
@@ -496,6 +512,37 @@ function OutcomeGallery() {
           </Card>
         ))}
       </div>
+    </div>
+  )
+}
+
+/**
+ * @function DarkSpecRail
+ * @description B유형 DX 톤 — 다크 카드에 목표 지연·모델 라인 등 하드 팩트를 모노 스페이스로 표시합니다.
+ */
+function DarkSpecRail() {
+  const lines = [
+    { k: "target.p95", v: "< 1.2s (클라이언트까지)" },
+    { k: "pipeline", v: "structured_output + Zod" },
+    { k: "ui.stack", v: "Next 15 · App Router" },
+  ]
+  return (
+    <div className="rounded-xl overflow-hidden border border-slate-800 bg-slate-950 text-slate-100 shadow-inner">
+      <div className="flex items-center gap-2 px-4 py-2 border-b border-slate-800 bg-slate-900/80">
+        <Zap className="h-4 w-4 text-amber-400" />
+        <span className="text-[11px] font-mono text-slate-400">spec.hardfacts · dev preview</span>
+      </div>
+      <div className="p-4 grid sm:grid-cols-3 gap-4 font-mono text-[11px] sm:text-xs">
+        {lines.map((l) => (
+          <div key={l.k} className="space-y-1">
+            <p className="text-slate-500">{l.k}</p>
+            <p className="text-emerald-400/95 leading-snug">{l.v}</p>
+          </div>
+        ))}
+      </div>
+      <p className="px-4 pb-3 text-[10px] text-slate-500 font-sans">
+        다크 모드·코드 톤은 B 유형 전환용이며, 실제 수치는 배포 환경 기준으로 교체하세요.
+      </p>
     </div>
   )
 }

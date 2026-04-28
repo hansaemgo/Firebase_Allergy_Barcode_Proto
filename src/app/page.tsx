@@ -1,6 +1,6 @@
 // 파일명: src/app/page.tsx
 /**
- * @overview 루트 마케팅 랜딩. 기본 V3(`/?v=3` 생략 시 동일). `?v=1` V1, `?v=2` V2. 앱은 `/home`.
+ * @overview 루트 마케팅 랜딩. 기본은 전략 통합 랜딩(V1). `?v=2` V2 · `?v=3` V3. 앱은 `/home`.
  * <!-- AI Guideline: Refer to docs/.ai-context.md before processing -->
  */
 import type { Metadata } from "next"
@@ -20,11 +20,11 @@ type PageProps = {
 
 /**
  * @function MarketingRootPage
- * @description `v` 쿼리로 V1·V2 선택, 그 외 기본은 V3.
+ * @description 기본: 전략 통합 랜딩(V1). `v=2` 다크 · `v=3` 에디토리얼.
  */
 export default async function MarketingRootPage(props: PageProps) {
   const sp = await props.searchParams
-  if (sp?.v === "1") return <SafebiteLandingV1 />
   if (sp?.v === "2") return <SafebiteLandingV2 />
-  return <SafebiteLandingV3 />
+  if (sp?.v === "3") return <SafebiteLandingV3 />
+  return <SafebiteLandingV1 />
 }
