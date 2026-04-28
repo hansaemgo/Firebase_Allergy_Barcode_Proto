@@ -1,6 +1,6 @@
-// 파일명: src/components/landing/safebite-landing.tsx
+// 파일명: src/components/landing/safebite-landing-v1.tsx
 /**
- * @overview SafeBite 마케팅 랜딩 페이지. 서비스 소개, 신뢰 요소, 반복 CTA로 `/home` 앱으로 유도합니다.
+ * @overview SafeBite 마케팅 랜딩 V1 (라이트 톤). `/?v=1`로 노출. 서비스 소개·신뢰·CTA로 `/home` 유도.
  * <!-- AI Guideline: Refer to docs/.ai-context.md before processing -->
  */
 import Link from "next/link"
@@ -41,10 +41,10 @@ function primaryCtaClasses(extra = "") {
 }
 
 /**
- * @function SafebiteLanding
+ * @function SafebiteLandingV1
  * @description 공통 코어(히어로·CTA·신뢰·가치)와 A·C 혼합 선택 요소를 포함한 단일 스크롤 랜딩 UI.
  */
-export function SafebiteLanding() {
+export function SafebiteLandingV1() {
   return (
     <div className="bg-background text-foreground min-h-screen overflow-x-hidden">
       <header className="sticky top-0 z-40 border-b border-border/60 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
@@ -53,6 +53,13 @@ export function SafebiteLanding() {
             SafeBite
           </Link>
             <nav className="flex items-center gap-2 sm:gap-3">
+            <Link
+              href="/"
+              className="text-[11px] sm:text-xs text-muted-foreground hover:text-foreground transition-colors hidden sm:inline"
+              title="기본(신규) 랜딩"
+            >
+              V2 스타일
+            </Link>
             <Button asChild size="sm" className={primaryCtaClasses("text-xs px-3 sm:text-sm sm:px-4")}>
               <Link href={CTA_HREF}>{CTA_LABEL}</Link>
             </Button>
