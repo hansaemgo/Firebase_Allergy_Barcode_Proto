@@ -1,7 +1,7 @@
 <!-- AI Guideline: Refer to docs/.ai-context.md before processing -->
-# SafeBite (세이프바이트) - 알레르기 안전 바코드 스캐너
+# SafeBite (세이프바이트) — 알레르기 안전 바코드 스캐너
 
-SafeBite는 다중 사용자 프로필을 기반으로 식품의 바코드를 스캔하여 실시간으로 알레르기 유발 성분을 확인하고 안전 여부를 판별해주는 차세대 식품 안전 플랫폼입니다.
+SafeBite는 **가족·기관 프로필**을 기준으로 바코드와 성분 데이터를 교차 검증해, 매장에서 **빠른 O/X 판정**과 (로드맵상) **응급·급식 안전망**까지 잇는 하이브리드 식품 안전 앱입니다. 마케팅 루트(`/`)는 제품 전략 문서(Workbase)와 정합한 **고강도 랜딩**을 기본으로 사용합니다.
 
 ## 🚀 주요 기능
 
@@ -58,16 +58,30 @@ npm run genkit:dev
 
 ## 📣 마케팅 랜딩 (Hook → 서비스)
 
-방문자는 **먼저** 루트의 마케팅 페이지를 보고, CTA를 통해 **`/home` 앱 본편**(대시보드·스캔 등)으로 들어오는 구조입니다.
+방문자는 **먼저** 루트의 마케팅 페이지를 보고, CTA로 **`/home` 앱 본편**(대시보드·스캔 등)으로 들어옵니다. 기본 랜딩은 지식베이스(`Allergy_Barcode_Workbase`)와 맞춘 **강한 설득 구조**를 씁니다.
 
 | 경로 | 설명 |
 |------|------|
-| `/` | 기본 · **전략 통합 랜딩** (`SafebiteLandingV1`, 라이트 톤) |
-| `/home` | 앱 서비스 화면(기존에 `/`였던 메인 대시보드 등) |
-| `/?v=2` | 대안 변형 · 다크·속도 강조 |
-| `/?v=3` | 대안 변형 · 에디토리얼·웜톤 |
+| `/` | 기본 · **전략 통합 랜딩 V1** (`SafebiteLandingV1`) — `#value` 3대 문제정의, `#dual` 이중 시장, `#benefits`, `#cta-band` 삼중 CTA, 페르소나 인용, 히어로 O/X 시뮬 |
+| `/home` | 앱 홈. `?cta=` 딥링크 시 인입 의도 배너(베타·알림·B2B·시작) |
+| `/?v=2` | 대안 · 다크·속도 강조 |
+| `/?v=3` | 대안 · 에디토리얼·웜톤 |
 
-**품질 점검:** 상위 디렉터리 `Allergy_barcode_App/docs/landing-page-checklist-final.md`에 히어로·CTA·신뢰·가치 제안 및 A/B/C 유형 보완 항목에 대한 최종 평가를 정리했습니다.
+**주요 쿼리**
+
+| `?cta=` | 의도 |
+|---------|------|
+| `start` | 기본 전환(랜딩 주 버튼) |
+| `beta` | 베타 사전 예약 |
+| `notify` | 출시·알림 |
+| `b2b` | 기관·급식 대기 |
+
+**문의 메일 (랜딩 `mailto:`):** `safebite-landing-v1.tsx` 상단 `LANDING_EMAIL` 을 실제 수신함으로 교체하세요.
+
+**품질 점검**
+
+- `Allergy_barcode_App/docs/landing-page-checklist-final.md` — A/B/C 유형 포함 최종 체크리스트
+- `Allergy_barcode_App/docs/landing-page-refresh-results-checklist.md` — 이번 고강도 리프레시 결과·KB 매핑 검수용
 
 ## 📂 프로젝트 구조
 
@@ -82,11 +96,12 @@ npm run genkit:dev
   - `code_quality_report.md`: 코드 품질 진단 및 CVA 도입, 주석 표준화 등 리팩토링 종합 보고서
   - `project_status.md`: 프로토타입 구현 현황 및 리뷰 노트
   - `../Allergy_barcode_App/docs/.ai-context.md`: AI 에이전트 컨텍스트(루트 `Allergy_barcode_App` 참고)
-  - `../Allergy_barcode_App/docs/landing-page-checklist-final.md`: **랜딩페이지 체크리스트 최종 평가**
+  - `../Allergy_barcode_App/docs/landing-page-checklist-final.md`: **랜딩 체크리스트(최종)**
+  - `../Allergy_barcode_App/docs/landing-page-refresh-results-checklist.md`: **고강도 리프레시 결과 검수**
 
 ## 📄 상위 레포 문서 (`Allergy_barcode_App/docs/`)
 
-워크스페이스 구조상 AI용 컨텍스트·랜딩 평가는 `Allergy_barcode_App/docs/` 에서 관리합니다. `.ai-context.md`, `landing-page-checklist-final.md` 를 함께 참고하면 됩니다.
+워크스페이스 구조상 AI용 컨텍스트·랜딩 평가는 `Allergy_barcode_App/docs/` 에서 관리합니다. `.ai-context.md`, `landing-page-checklist-final.md`, `landing-page-refresh-results-checklist.md` 를 함께 참고하면 됩니다.
 
 ## 🚢 배포
 

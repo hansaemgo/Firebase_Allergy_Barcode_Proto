@@ -1,6 +1,6 @@
 // 파일명: src/app/page.tsx
 /**
- * @overview 루트 마케팅 랜딩. 기본은 전략 통합 랜딩(V1). `?v=2` V2 · `?v=3` V3. 앱은 `/home`.
+ * @overview 루트 마케팅 랜딩. 기본은 전략 통합 랜딩(V1) — 지식베이스 고강도 버전(CJM·JTBD·이중 시장·삼중 CTA). `/?v=2` V2 · `?v=3` V3. 주요 CTA → `/home?cta=`.
  * <!-- AI Guideline: Refer to docs/.ai-context.md before processing -->
  */
 import type { Metadata } from "next"
@@ -9,9 +9,9 @@ import { SafebiteLandingV2 } from "@/components/landing/safebite-landing-v2"
 import { SafebiteLandingV3 } from "@/components/landing/safebite-landing-v3"
 
 export const metadata: Metadata = {
-  title: "SafeBite | 바코드로 알레르기 안전을 검증하세요",
+  title: "SafeBite | 0.5초 바코드·알레르기 극초직관 판정 & 기관 안전망",
   description:
-    "가족 프로필 기준으로 제품을 스캔하고, 섭취 가능 여부와 근거를 한곳에서 확인하세요. 실수 없는 식탁 판단을 돕는 SafeBite.",
+    "일상 스캔만이 아니라 보육·급식·응급까지 잇는 SafeBite. 가족 프로필·교차오염 검증을 바코드 한 번으로. 베타 예약·출시 알림·기관 대기 리스트까지.",
 }
 
 type PageProps = {

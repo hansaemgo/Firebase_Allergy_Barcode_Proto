@@ -1,23 +1,34 @@
 // 파일명: src/app/home/page.tsx
 /**
  * @overview 메인 대시보드 화면. 앱의 진입점으로서 스캔, 프로필 요약, 알림 현황 등 주요 정보를 제공합니다.
+ * 랜딩에서 `?cta=` 딥링크 시 우선 순위 안내 리본을 표시합니다.
  * <!-- AI Guideline: Refer to docs/.ai-context.md before processing -->
  */
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { AppNav } from "@/components/app-nav"
-import { Scan, Users, User, AlertTriangle, ShieldCheck, ChevronRight } from "lucide-react"
+import { Scan, Users, User, AlertTriangle, ShieldCheck, ChevronRight, X } from "lucide-react"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
+
+type HomePageProps = {
+  searchParams?: Promise<{ cta?: string }>
+}
 
 /**
  * @function Home
  * @description 홈 페이지 메인 컴포넌트. 스캔 시작, 활성 프로필 목록, 최근 안전 알림 및 검증 내역을 렌더링합니다.
  */
-export default function Home() {
+export default async function Home(props: HomePageProps) {
+  const searchParams = props.searchParams
+  const sp = searchParams ? await searchParams : {}
+  const cta = typeof sp.cta === "string" ? sp.cta : undefined
+
   return (
     <div className="max-w-md mx-auto min-h-screen bg-background pb-20">
+      <LandingIntentRibbon cta={cta} />
+
       <header className="pt-6 px-6 pb-10 bg-primary text-white flex justify-between items-center rounded-b-[2rem] shadow-lg">
         <div>
           <h1 className="text-xl font-bold tracking-tight">SafeBite</h1>
@@ -91,6 +102,58 @@ export default function Home() {
 
       <AppNav />
     </div>
+  )
+}
+
+/**
+ * @function LandingIntentRibbon
+ * @description 랜딩에서 삼중 CTA로 유입된 경우 후속 폼·운영 도구 연결 전까지 인지 플래그를 보여 줍니다.
+ * @param {string | undefined} props.cta - beta, notify, b2b, start
+ */
+function LandingIntentRibbon({ cta }: { cta?: string }) {
+  const copy: Record<string, { badge: string; title: string; body: string }> = {
+    beta: {
+      badge: "베타 우선 순위",
+      title: "스캔 베타 사전 예약 루트로 들어왔습니다.",
+      body: "정식 접수 폼 연동 전까지는 이 상태를 내부 추적 예시로만 봅니다. 스캔은 아래 카드부터 바로 이어 가세요.",
+    },
+    notify: {
+      badge: "출시 알림",
+      title: "출시·리콜 알림 신청 경로입니다.",
+      body: "푸시/이메일 백엔드 연결 시 이 깃발로 세그먼트를 매칭할 수 있습니다.",
+    },
+    b2b: {
+      badge: "B2B",
+      title: "기관·급식 대기 리스트 경로입니다.",
+      body: "원장·영양 교사 담당자에게 세일즈 콜·파일럿 제안 시 참고 라벨로 쓸 수 있습니다.",
+    },
+    start: {
+      badge: "시작",
+      title: "랜딩에서 바로 시작을 눌렀습니다.",
+      body: "전환 깊이 분석 시 기준 라인입니다.",
+    },
+  }
+  const item = cta ? copy[cta] : undefined
+  if (!item) return null
+  return (
+    <Card className="mx-6 mt-4 border-primary/35 bg-secondary/80 shadow-none">
+      <CardContent className="p-3 flex gap-2 items-start">
+        <Badge variant="secondary" className="mt-0.5 shrink-0 text-[10px]">
+          {item.badge}
+        </Badge>
+        <div className="min-w-0 flex-1 space-y-1">
+          <p className="text-xs font-bold leading-tight">{item.title}</p>
+          <p className="text-[10px] text-muted-foreground leading-snug">{item.body}</p>
+          <div className="flex justify-end pt-1">
+            <Button asChild variant="ghost" size="sm" className="h-7 px-2 text-[10px]">
+              <Link href="/home" prefetch={false}>
+                <X className="h-3 w-3 mr-1 inline" aria-hidden /> 배너 닫기(쿼리 제거)
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
   )
 }
 
