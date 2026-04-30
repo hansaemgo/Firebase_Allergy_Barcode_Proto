@@ -4,6 +4,7 @@
  * <!-- AI Guideline: Refer to docs/.ai-context.md before processing -->
  */
 import Link from "next/link"
+import Image from "next/image"
 import {
   ArrowRight,
   Barcode,
@@ -37,8 +38,28 @@ import {
 
 const CTA_HREF = "/home"
 const CTA_LABEL = "지금 안전하게 시작하기"
+/** 랜딩 헤더 오른쪽 CTA — 바코드 스캔 화면 */
+const SCAN_HREF = "/scan"
+/** 스티키 헤더 높이 고려한 앵커 스크롤 여백 */
+const SECTION_SCROLL_MARGIN = "scroll-mt-[4.5rem]"
+
+const LANDING_NAV_SECTIONS = [
+  { href: "#hero", label: "소개" },
+  { href: "#mission", label: "미션" },
+  { href: "#demo", label: "스캔 데모" },
+  { href: "#value", label: "핵심 가치" },
+  { href: "#dual", label: "이중 시장" },
+  { href: "#benefits", label: "혜택" },
+  { href: "#cta-band", label: "사전 예약" },
+] as const
+
 /** 랜딩 문의 메일 — 배포 전 실제 주소로 교체 */
 const LANDING_EMAIL = "hello@safebite.app"
+
+/**
+ * @description 헤더 왼쪽용 워드마크 겸 심볼 — 방패 실루엣 + 바코드 라인(SafeBite 신뢰·스캔).
+ */
+
 
 function mailtoPresale() {
   return `mailto:${LANDING_EMAIL}?subject=${encodeURIComponent("SafeBite 베타 사전 예약")}&body=${encodeURIComponent("연락처:\n자녀 알러지 여부:\n")}`
@@ -64,45 +85,42 @@ function primaryCtaClasses(extra = "") {
  */
 export function SafebiteLandingV1() {
   return (
-    <div className="bg-background text-foreground min-h-screen overflow-x-hidden pb-[8rem] md:pb-0">
-      <header className="sticky top-0 z-40 border-b border-border/60 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-4">
-          <Link href="/" className="font-bold text-lg tracking-tight text-primary shrink-0">
-            SafeBite
+    <>
+      <header className="sticky top-0 z-50 w-full border-b border-border/30 bg-background/50 backdrop-blur-md supports-[backdrop-filter]:bg-background/40 transition-colors">
+        <div className="relative flex h-14 w-full max-w-6xl mx-auto items-center gap-3 px-4 sm:px-6">
+          <Link
+            href="/#hero"
+            className="flex items-center gap-2 shrink-0 z-10 text-primary hover:opacity-90 transition-opacity"
+            aria-label="SafeBite · 페이지 상단"
+          >
+            <Image src="/safebite-logo.png" alt="SafeBite Logo" width={36} height={36} className="shrink-0 rounded-[8px]" />
+            <span className="font-bold text-base sm:text-lg tracking-tight text-foreground">SafeBite</span>
           </Link>
-            <nav className="flex items-center gap-2 sm:gap-3">
-            <Link
-              href="#value"
-              className="text-[11px] sm:text-xs text-muted-foreground hover:text-foreground transition-colors hidden md:inline"
-            >
-              가치
-            </Link>
-            <Link
-              href="#dual"
-              className="text-[11px] sm:text-xs text-muted-foreground hover:text-foreground transition-colors hidden md:inline"
-            >
-              전략
-            </Link>
-            <Link
-              href="#cta-band"
-              className="text-[11px] sm:text-xs text-muted-foreground hover:text-foreground transition-colors hidden md:inline"
-            >
-              예약·알림
-            </Link>
-            <Link href="/?v=2" className="text-[11px] sm:text-xs text-muted-foreground hover:text-foreground transition-colors hidden sm:inline">
-              V2 다크
-            </Link>
-            <Link href="/?v=3" className="text-[11px] sm:text-xs text-muted-foreground hover:text-foreground transition-colors hidden sm:inline">
-              V3 에디토리얼
-            </Link>
-            <Button asChild size="sm" className={primaryCtaClasses("text-xs px-3 sm:text-sm sm:px-4")}>
-              <Link href={`${CTA_HREF}?cta=start`}>{CTA_LABEL}</Link>
-            </Button>
+
+          <nav
+            className="absolute left-1/2 top-1/2 hidden md:flex -translate-x-1/2 -translate-y-1/2 items-center gap-4 lg:gap-5 text-[13px] font-medium text-muted-foreground"
+            aria-label="페이지 내 주요 섹션"
+          >
+            {LANDING_NAV_SECTIONS.map(({ href, label }) => (
+              <Link
+                key={href}
+                href={href}
+                className="hover:text-foreground transition-colors whitespace-nowrap"
+              >
+                {label}
+              </Link>
+            ))}
           </nav>
+
+          <div className="ml-auto shrink-0 z-10 flex items-center gap-2">
+            <Button asChild size="sm" className={primaryCtaClasses("text-xs sm:text-sm px-3 sm:px-4 font-semibold shadow-md")}>
+              <Link href={`${SCAN_HREF}?cta=landing_nav`}>스캔하기</Link>
+            </Button>
+          </div>
         </div>
       </header>
-
-      <section className="relative px-4 sm:px-6 pt-10 pb-16 md:pb-20">
+      <div className="bg-background text-foreground min-h-screen overflow-x-hidden pb-[8rem] md:pb-0">
+        <section id="hero" className={`relative px-4 sm:px-6 pt-10 pb-16 md:pb-20 ${SECTION_SCROLL_MARGIN}`}>
         <div className="absolute inset-0 bg-gradient-to-b from-secondary/15 via-transparent to-transparent pointer-events-none" />
         <div className="relative max-w-6xl mx-auto grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
           <div className="space-y-6">
@@ -150,7 +168,10 @@ export function SafebiteLandingV1() {
         </div>
       </section>
 
-      <section className="relative px-4 sm:px-6 py-8 border-y border-primary/15 bg-gradient-to-r from-primary/[0.07] via-secondary/25 to-primary/[0.05] overflow-hidden">
+      <section
+        id="mission"
+        className={`relative px-4 sm:px-6 py-8 border-y border-primary/15 bg-gradient-to-r from-primary/[0.07] via-secondary/25 to-primary/[0.05] overflow-hidden ${SECTION_SCROLL_MARGIN}`}
+      >
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-6">
           <div className="space-y-2 max-w-3xl">
             <p className="text-[10px] font-bold uppercase tracking-widest text-primary">미션 한 줄</p>
@@ -171,7 +192,11 @@ export function SafebiteLandingV1() {
         </div>
       </section>
 
-      <section className="px-4 sm:px-6 py-10 md:py-12 border-t border-border/60 bg-muted/20" aria-label="제품 데모 영역 자리">
+      <section
+        id="demo"
+        className={`px-4 sm:px-6 py-10 md:py-12 border-t border-border/60 bg-muted/20 ${SECTION_SCROLL_MARGIN}`}
+        aria-label="제품 데모 영역 자리"
+      >
         <div className="max-w-4xl mx-auto text-center space-y-4">
           <h2 className="text-lg md:text-xl font-bold">0.5초 안에 읽히는 스캔 → O/X 판정</h2>
           <p className="text-sm text-muted-foreground max-w-xl mx-auto">
@@ -187,7 +212,7 @@ export function SafebiteLandingV1() {
         </div>
       </section>
 
-      <section className="px-4 sm:px-6 py-14 border-t border-border/60 bg-muted/30">
+      <section id="proof" className={`px-4 sm:px-6 py-14 border-t border-border/60 bg-muted/30 ${SECTION_SCROLL_MARGIN}`}>
         <div className="max-w-6xl mx-auto">
           <div className="grid sm:grid-cols-3 gap-8 text-center">
             <div>
@@ -214,7 +239,7 @@ export function SafebiteLandingV1() {
         </div>
       </section>
 
-      <section id="value" className="px-4 sm:px-6 py-16 md:py-20 bg-background border-t border-border/60 scroll-mt-24">
+      <section id="value" className={`px-4 sm:px-6 py-16 md:py-20 bg-background border-t border-border/60 ${SECTION_SCROLL_MARGIN}`}>
         <div className="max-w-6xl mx-auto space-y-10">
           <div className="text-center space-y-3 max-w-3xl mx-auto">
             <h2 className="text-2xl md:text-3xl font-bold">세 질문 — 한 앱</h2>
@@ -265,7 +290,7 @@ export function SafebiteLandingV1() {
         </div>
       </section>
 
-      <section id="dual" className="px-4 sm:px-6 py-14 bg-muted/30 border-y border-border/60 scroll-mt-24">
+      <section id="dual" className={`px-4 sm:px-6 py-14 bg-muted/30 border-y border-border/60 ${SECTION_SCROLL_MARGIN}`}>
         <div className="max-w-6xl mx-auto space-y-8">
           <div className="text-center space-y-2 max-w-2xl mx-auto">
             <h2 className="text-2xl md:text-3xl font-bold">하이브리드 이중 시장</h2>
@@ -300,7 +325,7 @@ export function SafebiteLandingV1() {
         </div>
       </section>
 
-      <section id="benefits" className="px-4 sm:px-6 py-16 scroll-mt-24">
+      <section id="benefits" className={`px-4 sm:px-6 py-16 ${SECTION_SCROLL_MARGIN}`}>
         <div className="max-w-6xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-bold text-center mb-3">왜 SafeBite인가</h2>
           <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
@@ -345,7 +370,7 @@ export function SafebiteLandingV1() {
         </div>
       </section>
 
-      <section id="cta-band" className="px-4 sm:px-6 py-14 bg-muted/20 border-y border-border/60 scroll-mt-24">
+      <section id="cta-band" className={`px-4 sm:px-6 py-14 bg-muted/20 border-y border-border/60 ${SECTION_SCROLL_MARGIN}`}>
         <div className="max-w-6xl mx-auto space-y-10">
           <div className="text-center space-y-2">
             <h2 className="text-2xl md:text-3xl font-bold">지금 잡아둘 가치 — 삼중 CTA</h2>
@@ -561,16 +586,22 @@ export function SafebiteLandingV1() {
       </footer>
 
       <div className="fixed bottom-0 left-0 right-0 z-50 p-4 pb-[max(1rem,env(safe-area-inset-bottom))] bg-background/95 border-t border-border backdrop-blur md:hidden shadow-[0_-8px_30px_-12px_rgba(0,0,0,0.12)] space-y-2">
-        <Button asChild size="lg" className={primaryCtaClasses("w-full rounded-xl py-6 text-base shadow-md")}>
-          <Link href={`${CTA_HREF}?cta=start`}>{CTA_LABEL}</Link>
-        </Button>
+        <div className="flex gap-2">
+          <Button asChild variant="outline" size="lg" className="flex-1 rounded-xl py-6 text-base font-semibold border-primary/40">
+            <Link href={`${SCAN_HREF}?cta=landing_mobile`}>스캔하기</Link>
+          </Button>
+          <Button asChild size="lg" className={`flex-1 rounded-xl py-6 text-base shadow-md ${primaryCtaClasses("")}`}>
+            <Link href={`${CTA_HREF}?cta=start`}>{CTA_LABEL}</Link>
+          </Button>
+        </div>
         <div className="flex justify-center gap-3 text-[11px] text-muted-foreground">
           <Link href="#cta-band" className="underline underline-offset-2">
             베타·알림·기관
           </Link>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   )
 }
 
